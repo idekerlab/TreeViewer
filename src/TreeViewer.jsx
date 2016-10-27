@@ -5,19 +5,8 @@ import * as d3Selection from 'd3-selection'
 
 class TreeViewer extends Component {
 
-  componentDidMount() {
-    this.renderTree(this.props.data)
-  }
-
   componentWillMount() {
-  }
-
-  componentWillReceiveProps(nextProps) {
-  }
-
-
-  renderTree = data => {
-    const g = d3Selection.select("#root");
+    const data = this.props.data;
     const width = this.props.width;
     const height = this.props.height;
 
@@ -30,8 +19,29 @@ class TreeViewer extends Component {
     const result = tree(root);
     console.log(result)
 
-    this.renderLinks(g, root);
-    this.renderNodes(g, root);
+    this.setState({root: root})
+  }
+
+
+  render() {
+    return (
+      <svg
+        width={this.props.width}
+        height={this.props.height}>
+        <g id="root" transform="translate(40,0)">
+        </g>
+      </svg>
+    )
+  }
+
+  componentDidMount() {
+    const g = d3Selection.select("#root");
+    this.renderLinks(g, this.state.root);
+    this.renderNodes(g, this.state.root);
+  }
+
+
+  componentWillReceiveProps(nextProps) {
   }
 
   renderLinks = (g, root) => {
@@ -49,7 +59,7 @@ class TreeViewer extends Component {
       .attr("class", d => { return "node" + (d.children ? " node--internal" : " node--leaf"); })
       .attr("transform", d => { return "translate(" + d.y + "," + d.x + ")"; });
 
-    node.append("circle").attr("r", 12.5);
+    node.append("circle").attr("r", 5.5);
 
     node.append("text")
       .style('font', '0.3em sans-serif')
@@ -66,16 +76,6 @@ class TreeViewer extends Component {
       + " " + d.parent.y + "," + d.parent.x;
   };
 
-  render() {
-
-    return (
-        <svg
-          width={this.props.width}
-          height={this.props.height}>
-          <g id="root" transform="translate(40,0)"></g>
-        </svg>
-    )
-  }
 }
 
 

@@ -8,15 +8,15 @@
 }
 
 .node circle {
-    fill: #999;
+    fill: #EFEFEF;
 }
 
 .node text {
-    font: 10px sans-serif;
+    font: 8px sans-serif;
 }
 
 .node--internal circle {
-    fill: #555;
+    fill: orange;
 }
 
 .node--internal text {
