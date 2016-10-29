@@ -6,26 +6,28 @@
     left: 0;
     top: 0;
 }
+svg {
+    background: #FAFAFA;
+}
 
 .node circle {
-    fill: #EFEFEF;
+    fill: #EEEEEE;
 }
 
-.node text {
-    font: 8px sans-serif;
-}
 
 .node--internal circle {
-    fill: orange;
-}
-
-.node--internal text {
-    text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
+    fill: #55DDFF;
 }
 
 .link {
     fill: none;
-    stroke: #666688;
+    stroke: #AAAAAA;
     stroke-opacity: 0.3;
-    stroke-width: 1px;
+    stroke-width: 0.1em;
+}
+
+text {
+    fill: #7777AA;
+    font-weight: 300;
+    font-family: "Helvetica Neue";
 }
