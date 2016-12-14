@@ -1,1 +1,174 @@
-{"score": 0.889654636284, "name": "GO:00SUPER", "children": [{"namespace": "biological_process", "score": 0.29738172855, "name": "GO:0008150", "children": [{"namespace": "biological_process", "score": 0.11640059744999999, "name": "GO:0044699", "children": [{"namespace": "biological_process", "score": 0.283830902845, "name": "GO:0044710", "children": [{"score": 0.602248570094, "name": "GO:0044281", "namespace": "biological_process", "long_name": "small molecule metabolic process"}, {"namespace": "biological_process", "score": 0.857529887321, "name": "GO:0008152", "children": [{"namespace": "biological_process", "score": 0.8212409744570001, "name": "GO:0071704", "children": [{"score": 0.252483244667, "name": "GO:1901360", "namespace": "biological_process", "long_name": "organic cyclic compound metabolic process"}], "long_name": "organic substance metabolic process"}], "long_name": "metabolic process"}], "long_name": "single-organism metabolic process"}, {"namespace": "biological_process", "score": 0.280535655304, "name": "GO:0044763", "children": [{"namespace": "biological_process", "score": 0.704462248131, "name": "GO:0055086", "children": [{"namespace": "biological_process", "score": 0.600452011572, "name": "GO:0006753", "children": [{"namespace": "biological_process", "score": 0.146355669397, "name": "GO:0009123", "children": [{"namespace": "biological_process", "score": 0.610752542349, "name": "GO:0009167", "children": [{"score": 0.710352769093, "name": "GO:0009161", "namespace": "biological_process", "long_name": "ribonucleoside monophosphate metabolic process"}], "long_name": "purine ribonucleoside monophosphate metabolic process"}], "long_name": "nucleoside monophosphate metabolic process"}], "long_name": "nucleoside phosphate metabolic process"}], "long_name": "nucleobase-containing small molecule metabolic process"}, {"namespace": "biological_process", "score": 0.850698063954, "name": "GO:0022900", "children": [{"namespace": "biological_process", "score": 0.971264983214, "name": "GO:0022904", "children": [{"namespace": "biological_process", "score": 0.44445622394100004, "name": "GO:0006122", "children": [{"score": 1.0, "name": "YEL024W"}, {"score": 1.0, "name": "YJL166W"}], "long_name": "mitochondrial electron transport, ubiquinol to cytochrome c"}], "long_name": "respiratory electron transport chain"}], "long_name": "electron transport chain"}], "long_name": "single-organism cellular process"}], "long_name": "single-organism process"}], "long_name": "biological_process"}, {"namespace": "cellular_component", "score": 0.324022379946, "name": "GO:0005575", "children": [{"namespace": "cellular_component", "score": 0.7885490094840001, "name": "GO:0044425", "children": [{"namespace": "cellular_component", "score": 0.370468886845, "name": "GO:1902495", "children": [{"namespace": "cellular_component", "score": 0.36078017616400004, "name": "GO:0005750", "children": [{"score": 0.19141607349599998, "name": "GO:0005739", "namespace": "cellular_component", "long_name": "mitochondrion"}], "long_name": "mitochondrial respiratory chain complex III"}], "long_name": "transmembrane transporter complex"}], "long_name": "membrane part"}], "long_name": "cellular_component"}]}
+{
+  "score": 0.889654636284,
+  "name": "GO:00SUPER",
+  "children": [
+    {
+      "namespace": "biological_process",
+      "score": 0.29738172855,
+      "name": "GO:0008150",
+      "children": [
+        {
+          "namespace": "biological_process",
+          "score": 0.11640059744999999,
+          "name": "GO:0044699",
+          "children": [
+            {
+              "namespace": "biological_process",
+              "score": 0.283830902845,
+              "name": "GO:0044710",
+              "children": [
+                {
+                  "score": 0.602248570094,
+                  "name": "GO:0044281",
+                  "namespace": "biological_process",
+                  "long_name": "small molecule metabolic process"
+                },
+                {
+                  "namespace": "biological_process",
+                  "score": 0.857529887321,
+                  "name": "GO:0008152",
+                  "children": [
+                    {
+                      "namespace": "biological_process",
+                      "score": 0.8212409744570001,
+                      "name": "GO:0071704",
+                      "children": [
+                        {
+                          "score": 0.252483244667,
+                          "name": "GO:1901360",
+                          "namespace": "biological_process",
+                          "long_name": "organic cyclic compound metabolic process"
+                        }
+                      ],
+                      "long_name": "organic substance metabolic process"
+                    }
+                  ],
+                  "long_name": "metabolic process"
+                }
+              ],
+              "long_name": "single-organism metabolic process"
+            },
+            {
+              "namespace": "biological_process",
+              "score": 0.280535655304,
+              "name": "GO:0044763",
+              "children": [
+                {
+                  "namespace": "biological_process",
+                  "score": 0.704462248131,
+                  "name": "GO:0055086",
+                  "children": [
+                    {
+                      "namespace": "biological_process",
+                      "score": 0.600452011572,
+                      "name": "GO:0006753",
+                      "children": [
+                        {
+                          "namespace": "biological_process",
+                          "score": 0.146355669397,
+                          "name": "GO:0009123",
+                          "children": [
+                            {
+                              "namespace": "biological_process",
+                              "score": 0.610752542349,
+                              "name": "GO:0009167",
+                              "children": [
+                                {
+                                  "score": 0.710352769093,
+                                  "name": "GO:0009161",
+                                  "namespace": "biological_process",
+                                  "long_name": "ribonucleoside monophosphate metabolic process"
+                                }
+                              ],
+                              "long_name": "purine ribonucleoside monophosphate metabolic process"
+                            }
+                          ],
+                          "long_name": "nucleoside monophosphate metabolic process"
+                        }
+                      ],
+                      "long_name": "nucleoside phosphate metabolic process"
+                    }
+                  ],
+                  "long_name": "nucleobase-containing small molecule metabolic process"
+                },
+                {
+                  "namespace": "biological_process",
+                  "score": 0.850698063954,
+                  "name": "GO:0022900",
+                  "children": [
+                    {
+                      "namespace": "biological_process",
+                      "score": 0.971264983214,
+                      "name": "GO:0022904",
+                      "children": [
+                        {
+                          "namespace": "biological_process",
+                          "score": 0.44445622394100004,
+                          "name": "GO:0006122",
+                          "children": [
+                            {
+                              "score": 1.0,
+                              "name": "YEL024W"
+                            },
+                            {
+                              "score": 1.0,
+                              "name": "YJL166W"
+                            }
+                          ],
+                          "long_name": "mitochondrial electron transport, ubiquinol to cytochrome c"
+                        }
+                      ],
+                      "long_name": "respiratory electron transport chain"
+                    }
+                  ],
+                  "long_name": "electron transport chain"
+                }
+              ],
+              "long_name": "single-organism cellular process"
+            }
+          ],
+          "long_name": "single-organism process"
+        }
+      ],
+      "long_name": "biological_process"
+    },
+    {
+      "namespace": "cellular_component",
+      "score": 0.324022379946,
+      "name": "GO:0005575",
+      "children": [
+        {
+          "namespace": "cellular_component",
+          "score": 0.7885490094840001,
+          "name": "GO:0044425",
+          "children": [
+            {
+              "namespace": "cellular_component",
+              "score": 0.370468886845,
+              "name": "GO:1902495",
+              "children": [
+                {
+                  "namespace": "cellular_component",
+                  "score": 0.36078017616400004,
+                  "name": "GO:0005750",
+                  "children": [
+                    {
+                      "score": 0.19141607349599998,
+                      "name": "GO:0005739",
+                      "namespace": "cellular_component",
+                      "long_name": "mitochondrion"
+                    }
+                  ],
+                  "long_name": "mitochondrial respiratory chain complex III"
+                }
+              ],
+              "long_name": "transmembrane transporter complex"
+            }
+          ],
+          "long_name": "membrane part"
+        }
+      ],
+      "long_name": "cellular_component"
+    }
+  ]
+}

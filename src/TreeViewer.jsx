@@ -32,13 +32,46 @@ class TreeViewer extends Component {
       root: root,
       tree: tree,
       cluster: cluster,
-      isTree: true
+      isTree: true,
+      zoom: 1.0
     })
   }
 
+  componentWillReceiveProps(nextProps) {
+    const {data, width, height} = nextProps;
+    const tree = d3Hierarchy.tree();
+    tree.size([height, width * 0.7]);
 
-  handleScroll = event => {
-    console.log(event)
+    const cluster = d3Hierarchy.cluster().size([height, width]);
+    cluster.nodeSize([40, 260])
+
+    const root = d3Hierarchy.hierarchy(data, d => (d.children));
+
+    // tree(root);
+
+    cluster(root)
+
+    this.setState({
+      root: root,
+      tree: tree,
+      cluster: cluster,
+      isTree: true,
+      zoom: 0.71
+    })
+
+  }
+
+
+  handleScroll = e => {
+    console.log(e)
+
+    const wDelta = e.wheelDelta;
+    console.log(wDelta);
+  }
+
+
+  getZoom = () => {
+
   }
 
 
@@ -55,7 +88,7 @@ class TreeViewer extends Component {
     console.log(nodes)
 
     const displacement = 40;
-    const transform = 'translate(' + displacement + ',' + this.props.height/2+')';
+    const transform = 'translate(' + displacement + ',' + this.props.height/2+'), scale(' + this.state.zoom + ')'
 
     return (
       <svg
@@ -81,6 +114,7 @@ class TreeViewer extends Component {
         </defs>
         <g id="root"
            transform={transform}
+
            onWheel={this.handleScroll}
         >
           {links}
@@ -93,6 +127,9 @@ class TreeViewer extends Component {
 
 
   getNodes(node) {
+
+    console.log('[[[[[[ CUR NODE ]]]]')
+    console.log(node)
     const children = node.children;
     let nodes = [];
 
