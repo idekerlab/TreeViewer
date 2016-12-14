@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, PropTypes} from 'react'
 
 class Shape extends Component {
 
@@ -7,6 +7,7 @@ class Shape extends Component {
     return(
       <circle
         r={this.props.size}
+        style={this.props.style}
       />
     )
   }
@@ -21,5 +22,17 @@ class Shape extends Component {
   }
 
 }
+
+Shape.propTypes = {
+  style: PropTypes.object,
+  size: PropTypes.number
+};
+
+Shape.defaultProps = {
+  style: {
+    fill: '#aaaaaa'
+  },
+  size: 10
+};
 
 export default Shape

@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from 'react'
+
 import * as d3Hierarchy from 'd3-hierarchy'
+import * as d3Scale from 'd3-scale'
 import * as d3Trans from 'd3-transition'
 import * as d3Select from 'd3-selection'
 
@@ -15,12 +17,16 @@ class TreeViewer extends Component {
   componentWillMount() {
     const {data, width, height} = this.props;
     const tree = d3Hierarchy.tree();
-    tree.size([height, width* 0.8]);
+    tree.size([height, width * 0.7]);
 
-    const cluster = d3Hierarchy.cluster().size([height, width* 0.9]);
+    const cluster = d3Hierarchy.cluster().size([height, width]);
+    cluster.nodeSize([40, 260])
+
     const root = d3Hierarchy.hierarchy(data, d => (d.children));
 
-    tree(root);
+    // tree(root);
+
+    cluster(root)
 
     this.setState({
       root: root,
@@ -30,20 +36,52 @@ class TreeViewer extends Component {
     })
   }
 
+
+  handleScroll = event => {
+    console.log(event)
+  }
+
+
   render() {
+
+    console.log('************* 222 TREE RENDERING )))))))))))))))))))))))))))))')
+    console.log(this.props.data)
+    console.log(this.state)
+    console.log(this.state.root.descendants())
+
     const links = this.getLinks(this.state.root);
     const nodes = this.getNodes(this.state.root);
+    console.log(links)
+    console.log(nodes)
 
-    const displacement = this.props.width * 0.06;
-    const transform = 'translate(' + displacement + ',0)';
+    const displacement = 40;
+    const transform = 'translate(' + displacement + ',' + this.props.height/2+')';
 
     return (
       <svg
-        onClick={this.animate}
         width={this.props.width}
         height={this.props.height}>
+        <defs>
+          <marker
+            id="type1"
+            markerUnits="strokeWidth"
+            markerWidth="12"
+            markerHeight="12"
+            viewBox="0 0 10 10"
+            refX="12"
+            refY="5"
+            orient="auto">
+
+            <polygon
+              points="0,0 5,5 0,10 10,5"
+              id="arrow1"
+              fill="#888888"
+            />
+          </marker>
+        </defs>
         <g id="root"
            transform={transform}
+           onWheel={this.handleScroll}
         >
           {links}
           {nodes}
@@ -52,9 +90,20 @@ class TreeViewer extends Component {
     )
   }
 
+
+
   getNodes(node) {
     const children = node.children;
     let nodes = [];
+
+    const rootStyle = {
+      fill: 'white',
+      stroke: '#888888',
+      strokeOpacity: 1,
+      strokeWidth: 2
+    }
+
+    console.log(children)
 
     if(children === undefined) {
       return [];
@@ -63,8 +112,10 @@ class TreeViewer extends Component {
         nodes.push(
           <Node
             node={node}
-            nodeSize="24"
+            nodeSize="15"
             fontSize='1.2em'
+            label={this.props.label}
+            shapeStyle={rootStyle}
           />);
       }
 
@@ -72,8 +123,10 @@ class TreeViewer extends Component {
         nodes.push(
           <Node
             node={childNode}
-            nodeSize='8'
+            nodeSize={this.getSize(childNode)}
             fontSize='1em'
+            label={this.props.label}
+            shapeStyle={this.getShapeStyle(childNode)}
           />);
         nodes = nodes.concat(this.getNodes(childNode));
       });
@@ -81,6 +134,19 @@ class TreeViewer extends Component {
       return nodes;
     }
   }
+
+  getSize = (node) => {
+
+    const score = node.data.score
+
+    if(score >= 1) {
+      return 10
+    }
+
+    return score * 50
+
+  }
+
 
   getLinks(node) {
     const children = node.children;
@@ -90,7 +156,11 @@ class TreeViewer extends Component {
       return [];
     } else {
       children.forEach(childNode => {
-        links.push(<Link node={childNode} />)
+        links.push(
+          <Link
+            node={childNode}
+            style={this.getLinkStyle(childNode)}
+          />)
         links = links.concat(this.getLinks(childNode));
       });
 
@@ -98,19 +168,79 @@ class TreeViewer extends Component {
     }
   }
 
+
+  // This should be an injectable function
+  getShapeStyle = node => {
+
+
+    const namespace = node.data.namespace
+
+    const style = {
+      fill: '#aaaaaa'
+    }
+
+    if(namespace === 'biological_process') {
+      style.fill = '#4393C3'
+    } else if (namespace === 'cellular_component') {
+      style.fill = '#F57C00'
+    }
+
+    return style
+  }
+
+  getLinkStyle = childNode => {
+
+    const data = childNode.data
+    const namespace = data.namespace
+
+    const defStyle = {
+      fill: 'none',
+      stroke: '#aaaaaa',
+      strokeOpacity: 0.8,
+      strokeWidth: '0.1em'
+    }
+
+    if(namespace === undefined || namespace === '') {
+      return defStyle
+    } else if(namespace === 'biological_process') {
+      defStyle.stroke = '#4393C3'
+    } else if (namespace === 'cellular_component') {
+      defStyle.stroke = '#F57C00'
+    }
+
+    return defStyle
+
+  }
+
+
   animate = () => {
-    console.log('######## click!!!!!');
+    console.log('######## 2click!!!!!');
 
 
-    this.state.cluster(this.state.root)
+    const rt = this.state.root;
+    this.state.cluster(rt)
+
+    const g = d3Select.select("#root");
+    console.log(g)
+
+    const nodeSelection = g.selectAll(".node");
+    console.log(nodeSelection);
+
+    const nodes = nodeSelection.data(rt.descendants());
+    console.log(nodes);
+
+    const links = g.selectAll(".link")
+      .data(rt.descendants().slice(1));
+
 
     const t = d3Trans.transition().duration(2500);
     console.log(t);
 
-    this.state.nodes.transition(t)
+    nodes.transition(t)
       .attr("transform", d =>("translate(" + d.y + "," + d.x + ")"))
       .select('circle').style("fill", d =>('teal'));
-    this.state.links.transition(t).attr("d", Link.diagonal);
+
+    links.transition(t).attr("d", Link.diagonal);
   }
 
   componentDidMount() {
@@ -134,6 +264,24 @@ class TreeViewer extends Component {
   }
 
 
+  zoom = () => {
+    // const scale = d3Scale.scale
+    //   translation = d3.event.translate,
+    //   tbound = -h * scale,
+    //   bbound = h * scale,
+    //   lbound = (-w + m[1]) * scale,
+    //   rbound = (w - m[3]) * scale;
+    // // limit translation to thresholds
+    // translation = [
+    //   Math.max(Math.min(translation[0], rbound), lbound),
+    //   Math.max(Math.min(translation[1], bbound), tbound)
+    // ];
+    // d3.select(".drawarea")
+    //   .attr("transform", "translate(" + translation + ")" +
+    //     " scale(" + scale + ")");
+  }
+
+
 }
 
 
@@ -145,6 +293,8 @@ TreeViewer.propTypes = {
   // Tree data
   data: PropTypes.object,
 
+  label: PropTypes.string,
+
   width: PropTypes.number,
   height: PropTypes.number,
   nodeSize: PropTypes.number
@@ -155,6 +305,7 @@ TreeViewer.propTypes = {
  */
 TreeViewer.defaultProps = {
   data: {},
+  label: 'name',
   width: 1200,
   height: 3500,
   nodeSize: 10

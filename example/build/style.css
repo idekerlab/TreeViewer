@@ -6,28 +6,35 @@
     left: 0;
     top: 0;
 }
+
 svg {
-    background: #FAFAFA;
+    background: #f9f9f9;
 }
 
 .node circle {
-    fill: #EEEEEE;
+    opacity: 0.8;
 }
 
 
 .node--internal circle {
-    fill: #55DDFF;
+    opacity: 0.8;
 }
 
 .link {
     fill: none;
-    stroke: #AAAAAA;
-    stroke-opacity: 0.3;
+    stroke: #777777;
+    stroke-opacity: 0.2;
     stroke-width: 0.1em;
 }
 
 text {
-    fill: #7777AA;
-    font-weight: 300;
-    font-family: "Helvetica Neue";
+    fill: #555555;
+    font-weight: 400;
+    font-size: 0.7em;
+    font-family: "SansSerif";
+}
+
+body {
+    width: 100%;
+    height: 100%;
 }

@@ -1,4 +1,5 @@
-import React, {Component} from 'react'
+import React, {Component, PropTypes} from 'react'
+
 
 class Link extends Component {
 
@@ -7,6 +8,7 @@ class Link extends Component {
       <path
         key={this.props.node.data.name}
         className='link'
+        style={this.props.style}
         d={Link.diagonal(this.props.node)}>
       </path>
     )
@@ -19,4 +21,21 @@ class Link extends Component {
       + " " + d.parent.y + "," + d.parent.x
   );
 }
+
+
+Link.propTypes = {
+  style: PropTypes.object
+};
+
+
+Link.defaultProps = {
+  style: {
+    fill: 'none',
+    stroke: '#777777',
+    strokeOpacity: 0.5,
+    strokeWidth: '0.1em'
+  }
+};
+
+
 export default Link
