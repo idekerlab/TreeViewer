@@ -11,8 +11,6 @@ const TAG = 'viewer';
 
 const width = document.body.clientWidth
 
-console.log(width)
-
 const style = {
   width: width,
   height: 1000

@@ -6,29 +6,35 @@ class Link extends Component {
   render() {
     return(
       <path
-        key={this.props.node.data.name}
         className='link'
         style={this.props.style}
-        d={Link.diagonal(this.props.node)}>
+        d={this.getPath(this.props.positions)}>
       </path>
     )
   }
 
-  static diagonal = d => (
-    "M" + d.y + "," + d.x
-      + "C" + (d.parent.y + 100) + "," + d.x
-      + " " + (d.parent.y + 100) + "," + d.parent.x
-      + " " + d.parent.y + "," + d.parent.x
+  getPath = positions => (
+    "M" + positions.source.y + "," + positions.source.x
+      + "C" + (positions.target.y + 100) + "," + positions.source.x
+      + " " + (positions.target.y + 100) + "," + positions.target.x
+      + " " + positions.target.y + "," + positions.target.x
   );
 }
 
 
 Link.propTypes = {
+  positions: PropTypes.object,
   style: PropTypes.object
 };
 
 
 Link.defaultProps = {
+
+  positions: {
+    source: {x: 0, y: 0},
+    targets: {x: 0, y: 0}
+  },
+
   style: {
     fill: 'none',
     stroke: '#777777',

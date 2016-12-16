@@ -11,37 +11,12 @@ import Link from './Link'
 import Node from './Node'
 
 
-// Presets (constants)
-
-// For SVG scaling
-const MIN_SCALE = 0.2
-const MAX_SCALE = 20.0
-const ZOOM_STEP = .01
-const UP = 1
-const DOWN = -1
-const DEF_SCALE = 1.0
-
-
 /**
  *
  * Simple tree data renderer for D3.js style tree data.
  *
  */
 class TreeViewer extends Component {
-
-  constructor(props) {
-    super(props);
-
-
-    this.state = {
-      scale: DEF_SCALE,
-      x: 0,
-      y: 0,
-      xLast: null,
-      yLast: null
-    }
-  }
-
 
   layoutTree = () => {
     const {data, style} = this.props
@@ -92,24 +67,6 @@ class TreeViewer extends Component {
         width={this.props.style.width}
         height={this.props.style.height}
       >
-        <defs>
-          <marker
-            id="type1"
-            markerUnits="strokeWidth"
-            markerWidth="12"
-            markerHeight="12"
-            viewBox="0 0 10 10"
-            refX="12"
-            refY="5"
-            orient="auto">
-
-            <polygon
-              points="0,0 5,5 0,10 10,5"
-              id="arrow1"
-              fill="#888888"
-            />
-          </marker>
-        </defs>
         <rect
           width={this.props.style.width}
           height={this.props.style.height}
@@ -118,7 +75,8 @@ class TreeViewer extends Component {
         </rect>
 
 
-        <g id="root"
+        <g
+          id="root"
         >
             {links}
             {nodes}
@@ -141,28 +99,37 @@ class TreeViewer extends Component {
       strokeWidth: 2
     }
 
-
     if(children === undefined) {
       return [];
     } else {
+
       if(node === this.state.root) {
         nodes.push(
           <Node
-            node={node}
-            nodeSize="15"
+            key={Math.random()}
+            id={node.data.name}
+            data={node.data}
+            isRoot={true}
+            nodeSize={15}
+            position={{x: node.x, y: node.y}}
             fontSize='1.2em'
-            label={this.props.label}
+            labelKey={this.props.label}
             shapeStyle={rootStyle}
           />);
       }
 
       children.forEach(childNode => {
+        const isLeaf = childNode.children ? true : false
         nodes.push(
           <Node
-            node={childNode}
+            key={Math.random()}
+            id={childNode.data.name}
+            data={childNode.data}
+            isLeaf={isLeaf}
+            position={{x: childNode.x, y: childNode.y}}
             nodeSize={this.getSize(childNode)}
             fontSize='1em'
-            label={this.props.label}
+            labelKey={this.props.label}
             shapeStyle={this.getShapeStyle(childNode)}
           />);
         nodes = nodes.concat(this.getNodes(childNode));
@@ -195,7 +162,11 @@ class TreeViewer extends Component {
       children.forEach(childNode => {
         links.push(
           <Link
-            node={childNode}
+            key={node.data.name + '-' + childNode.data.name}
+            positions={{
+              source: {x: childNode.x, y: childNode.y},
+              target: {x: node.x, y: node.y}
+            }}
             style={this.getLinkStyle(childNode)}
           />)
         links = links.concat(this.getLinks(childNode));
@@ -252,16 +223,12 @@ class TreeViewer extends Component {
 
 
   zoomed = () => {
-    console.log("---------- D3 ZOOM2 -----------")
     const treeArea = d3Select.select('#root')
     const t = d3Select.event.transform
     treeArea.attr("transform", t);
   }
 
   componentDidMount() {
-
-    console.log("---------- D3 AREA2 -----------")
-
     const zoom = d3Zoom.zoom()
       .scaleExtent([1 / 3, 10])
       .on('zoom', this.zoomed)
@@ -272,7 +239,7 @@ class TreeViewer extends Component {
       .call(zoom)
 
     // Move to initial location
-    zoomArea.call(zoom.transform, d3Zoom.zoomIdentity.translate(50, this.state.y));
+    zoomArea.call(zoom.transform, d3Zoom.zoomIdentity.translate(50, this.props.style.height/2));
   }
 
 }

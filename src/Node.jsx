@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 import Shape from './Shape'
-
+import Tooltip from './Tooltip'
 
 const DEF_EVENT_HANDLERS = {
   nodeSelected: selectedNode => {
@@ -12,72 +12,114 @@ const DEF_EVENT_HANDLERS = {
 
 class Node extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showTooltip: false,
+      selected: false
+    }
+  }
+
   onClick = (event) => {
     console.log("----------- CLICK!!!!!!!!! --------------")
-    // console.log(event)
-    // console.log(this.props.node)
-    // this.props.eventHandlers.nodeSelected(this.props.node)
+    this.setState({selected: !this.state.selected})
+
+    this.props.eventHandlers.nodeSelected(this.props.data)
+  }
+
+  handleMouseEnter = (event) => {
+    console.log('Enter')
+    this.setState({showTooltip: true})
+
+    setTimeout(() => {
+      if(this.state.showTooltip) {
+        console.log("------Tooltip --------")
+      }
+    }, 1000)
+  }
+
+  handleMouseLeave = (event) => {
+    console.log('Leave')
+    this.setState({showTooltip: false})
   }
 
   render() {
-    const textElement = this.getTextElement(this.props.node)
 
+    const textElement = this.getTextElement(this.props.data)
+
+
+    const style = Object.assign({}, this.props.shapeStyle)
+    console.log(this.state.showTooltip)
+
+    if(this.state.selected) {
+      style.fill = 'red'
+      style.stroke = "orange"
+      style.strokeWidth = "10"
+    } else {
+      style.fill = this.props.shapeStyle.fill
+    }
+
+    console.log(style)
 
     return (
       <g
-        key={this.props.count + this.props.node.data.name}
         className={this.props.nodeType}
-        transform={this.getTransform(this.props.node)}
+        transform={this.getTransform(this.props.position)}
         onClick={this.onClick}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
       >
         <Shape
           size={this.props.nodeSize}
-          style={this.props.shapeStyle}
+          style={style}
         />
 
-        {textElement.map( tElem => (tElem))}
+        {textElement}
+
       </g>
     )
   }
 
-  // getClass = d => {
-  //   return "node" + (d.children ? " node--internal" : " node--leaf");
-  // }
 
-  getTransform = d => {
-    return "translate(" + d.y + "," + d.x + ")";
+  getTransform = position => {
+    return "translate(" + position.y + "," + position.x + ")";
   }
 
-  getX = d => {
+  getX = () => {
     const disp = this.props.nodeSize + 5;
-    return d.children ? -disp : disp;
+    if(this.props.isRoot) {
+      return disp
+    }
+    return this.props.isLeaf ? -disp : disp;
   }
 
-  getY = d => (d.children ? this.props.nodeSize : this.props.nodeSize / 2)
+  getY = () => {
+    return this.props.isLeaf ? this.props.nodeSize : (this.props.nodeSize / 2);
+  }
 
 
-  getTextElement = node => {
-
-    let text = node.data[this.props.label]
+  getTextElement = data => {
+    const key = this.props.labelKey
+    let text = data[key]
     if (text === undefined || text === '') {
-      text = node.data.name
+      text = this.props.id
     }
 
     if(text.length < 35) {
       return (
         [
           <text
-            dy={this.getY(node)}
-            x={this.getX(node)}
-            style={this.getStyle(node)}
+            key={String(Math.random())}
+            dy={this.getY()}
+            x={this.getX()}
+            style={this.getStyle()}
           >
             {text}
           </text>
         ]
       )
     }
-
-    // text = text.substring(0,40) + '...'
 
     const words = text.split(/\s+/)
     let line1 = ''
@@ -99,19 +141,20 @@ class Node extends Component {
       }
     }
 
-
     return [
       <text
-        dy={this.getY(node)}
-        x={this.getX(node)}
-        style={this.getStyle(node)}
+        key={String(Math.random())}
+        dy={this.getY()}
+        x={this.getX()}
+        style={this.getStyle()}
       >
         {line1}
       </text>,
       <text
-        dy={this.getY(node) + 12}
-        x={this.getX(node)}
-        style={this.getStyle(node)}
+        key={String(Math.random())}
+        dy={this.getY() + 12}
+        x={this.getX()}
+        style={this.getStyle()}
       >
         {line2}
       </text>
@@ -120,34 +163,42 @@ class Node extends Component {
 
   }
 
-  getStyle = d => {
+  getStyle = () => {
     return {
-      // fontSize: this.props.fontSize,
-      textAnchor: this.getAnchor(d)
+      textAnchor: this.getAnchor()
     }
   }
 
-  getAnchor = d => {
+  getAnchor = () => {
     // Special case: Root
-    if(d.parent === undefined || d.parent === null) {
-      return 'start'
+    if(this.props.isRoot) {
+      return 'middle'
     }
 
-    return d.children ? "end" : "start";
+    return this.props.isLeaf ? 'end' : 'start'
   }
 
 }
 
 
 Node.propTypes = {
-  node: PropTypes.object,
+  id: PropTypes.string.isRequired,
+  data: PropTypes.object,
+  isLeaf: PropTypes.bool,
+  isRoot: PropTypes.bool,
+  labelKey: PropTypes.string,
   nodeType: PropTypes.string,
   position: PropTypes.object,
+  nodeSize: PropTypes.number,
   eventHandlers: PropTypes.object
 };
 
 Node.defaultProps = {
   nodeType: 'node',
+  isLeaf: false,
+  isRoot: false,
+  labelKey: 'name',
+  nodeSize: 10,
   position: {x: 0, y: 0},
   eventHandlers: DEF_EVENT_HANDLERS
 };
