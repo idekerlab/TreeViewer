@@ -13,9 +13,10 @@ const DEF_EVENT_HANDLERS = {
 class Node extends Component {
 
   onClick = (event) => {
-    console.log(event)
-    console.log(this.props.node)
-    this.props.eventHandlers.nodeSelected(this.props.node)
+    console.log("----------- CLICK!!!!!!!!! --------------")
+    // console.log(event)
+    // console.log(this.props.node)
+    // this.props.eventHandlers.nodeSelected(this.props.node)
   }
 
   render() {
@@ -25,9 +26,9 @@ class Node extends Component {
     return (
       <g
         key={this.props.count + this.props.node.data.name}
-        className={this.getClass(this.props.node)}
-        onClick={this.onClick}
+        className={this.props.nodeType}
         transform={this.getTransform(this.props.node)}
+        onClick={this.onClick}
       >
         <Shape
           size={this.props.nodeSize}
@@ -39,9 +40,9 @@ class Node extends Component {
     )
   }
 
-  getClass = d => {
-    return "node" + (d.children ? " node--internal" : " node--leaf");
-  }
+  // getClass = d => {
+  //   return "node" + (d.children ? " node--internal" : " node--leaf");
+  // }
 
   getTransform = d => {
     return "translate(" + d.y + "," + d.x + ")";
@@ -61,8 +62,6 @@ class Node extends Component {
     if (text === undefined || text === '') {
       text = node.data.name
     }
-
-    console.log(text)
 
     if(text.length < 35) {
       return (
@@ -142,10 +141,14 @@ class Node extends Component {
 
 Node.propTypes = {
   node: PropTypes.object,
+  nodeType: PropTypes.string,
+  position: PropTypes.object,
   eventHandlers: PropTypes.object
 };
 
 Node.defaultProps = {
+  nodeType: 'node',
+  position: {x: 0, y: 0},
   eventHandlers: DEF_EVENT_HANDLERS
 };
 

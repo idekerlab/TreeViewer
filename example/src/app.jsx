@@ -13,12 +13,16 @@ const width = document.body.clientWidth
 
 console.log(width)
 
+const style = {
+  width: width,
+  height: 1000
+}
+
 ReactDOM.render(
   <TreeViewer
     data={data}
     label="long_name"
-    width={width}
-    height={1000}
+    style={style}
   />,
   document.getElementById(TAG)
 );

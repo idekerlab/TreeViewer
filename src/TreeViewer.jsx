@@ -1,99 +1,97 @@
 import React, {Component, PropTypes} from 'react'
 
 import * as d3Hierarchy from 'd3-hierarchy'
-import * as d3Scale from 'd3-scale'
 import * as d3Trans from 'd3-transition'
 import * as d3Select from 'd3-selection'
+import * as d3Zoom from 'd3-zoom'
+import * as d3Drag from 'd3-drag'
+
 
 import Link from './Link'
 import Node from './Node'
 
 
+// Presets (constants)
+
+// For SVG scaling
+const MIN_SCALE = 0.2
+const MAX_SCALE = 20.0
+const ZOOM_STEP = .01
+const UP = 1
+const DOWN = -1
+const DEF_SCALE = 1.0
+
+
+/**
+ *
+ * Simple tree data renderer for D3.js style tree data.
+ *
+ */
 class TreeViewer extends Component {
 
+  constructor(props) {
+    super(props);
+
+
+    this.state = {
+      scale: DEF_SCALE,
+      x: 0,
+      y: 0,
+      xLast: null,
+      yLast: null
+    }
+  }
+
+
+  layoutTree = () => {
+    const {data, style} = this.props
+    const width = style.width
+    const height = style.height
+
+    // Create D3 instance of the tree
+    const cluster = d3Hierarchy.cluster()
+      .size([height, width]);
+
+    cluster.nodeSize([40, 260])
+    const root = d3Hierarchy.hierarchy(data, d => (d.children));
+
+    cluster(root)
+    this.setState({
+      root: root,
+      cluster: cluster,
+      y: height/2.0
+    })
+
+  }
   /**
    * Pre-render tree using D3
    */
   componentWillMount() {
-    const {data, width, height} = this.props;
-    const tree = d3Hierarchy.tree();
-    tree.size([height, width * 0.7]);
-
-    const cluster = d3Hierarchy.cluster().size([height, width]);
-    cluster.nodeSize([40, 260])
-
-    const root = d3Hierarchy.hierarchy(data, d => (d.children));
-
-    // tree(root);
-
-    cluster(root)
-
-    this.setState({
-      root: root,
-      tree: tree,
-      cluster: cluster,
-      isTree: true,
-      zoom: 1.0
-    })
+    this.layoutTree()
   }
 
   componentWillReceiveProps(nextProps) {
-    const {data, width, height} = nextProps;
-    const tree = d3Hierarchy.tree();
-    tree.size([height, width * 0.7]);
-
-    const cluster = d3Hierarchy.cluster().size([height, width]);
-    cluster.nodeSize([40, 260])
-
-    const root = d3Hierarchy.hierarchy(data, d => (d.children));
-
-    // tree(root);
-
-    cluster(root)
-
-    this.setState({
-      root: root,
-      tree: tree,
-      cluster: cluster,
-      isTree: true,
-      zoom: 0.71
-    })
-
-  }
-
-
-  handleScroll = e => {
-    console.log(e)
-
-    const wDelta = e.wheelDelta;
-    console.log(wDelta);
-  }
-
-
-  getZoom = () => {
-
+    // this.layoutTree()
   }
 
 
   render() {
 
     console.log('************* 222 TREE RENDERING )))))))))))))))))))))))))))))')
-    console.log(this.props.data)
-    console.log(this.state)
-    console.log(this.state.root.descendants())
 
     const links = this.getLinks(this.state.root);
     const nodes = this.getNodes(this.state.root);
-    console.log(links)
-    console.log(nodes)
 
-    const displacement = 40;
-    const transform = 'translate(' + displacement + ',' + this.props.height/2+'), scale(' + this.state.zoom + ')'
+    const areaStyle = {
+      fill: 'none',
+      pointerEvents: 'all'
+    }
 
     return (
       <svg
-        width={this.props.width}
-        height={this.props.height}>
+        width={this.props.style.width}
+        height={this.props.style.height}
+      >
         <defs>
           <marker
             id="type1"
@@ -112,13 +110,18 @@ class TreeViewer extends Component {
             />
           </marker>
         </defs>
-        <g id="root"
-           transform={transform}
-
-           onWheel={this.handleScroll}
+        <rect
+          width={this.props.style.width}
+          height={this.props.style.height}
+          style={areaStyle}
         >
-          {links}
-          {nodes}
+        </rect>
+
+
+        <g id="root"
+        >
+            {links}
+            {nodes}
         </g>
       </svg>
     )
@@ -128,8 +131,6 @@ class TreeViewer extends Component {
 
   getNodes(node) {
 
-    console.log('[[[[[[ CUR NODE ]]]]')
-    console.log(node)
     const children = node.children;
     let nodes = [];
 
@@ -140,7 +141,6 @@ class TreeViewer extends Component {
       strokeWidth: 2
     }
 
-    console.log(children)
 
     if(children === undefined) {
       return [];
@@ -250,102 +250,58 @@ class TreeViewer extends Component {
   }
 
 
-  animate = () => {
-    console.log('######## 2click!!!!!');
 
-
-    const rt = this.state.root;
-    this.state.cluster(rt)
-
-    const g = d3Select.select("#root");
-    console.log(g)
-
-    const nodeSelection = g.selectAll(".node");
-    console.log(nodeSelection);
-
-    const nodes = nodeSelection.data(rt.descendants());
-    console.log(nodes);
-
-    const links = g.selectAll(".link")
-      .data(rt.descendants().slice(1));
-
-
-    const t = d3Trans.transition().duration(2500);
-    console.log(t);
-
-    nodes.transition(t)
-      .attr("transform", d =>("translate(" + d.y + "," + d.x + ")"))
-      .select('circle').style("fill", d =>('teal'));
-
-    links.transition(t).attr("d", Link.diagonal);
+  zoomed = () => {
+    console.log("---------- D3 ZOOM2 -----------")
+    const treeArea = d3Select.select('#root')
+    const t = d3Select.event.transform
+    treeArea.attr("transform", t);
   }
 
   componentDidMount() {
-    const rt = this.state.root;
-    const g = d3Select.select("#root");
-    console.log(g)
 
-    const nodeSelection = g.selectAll(".node");
-    console.log(nodeSelection);
+    console.log("---------- D3 AREA2 -----------")
 
-    const nodes = nodeSelection.data(rt.descendants());
-    console.log(nodes);
+    const zoom = d3Zoom.zoom()
+      .scaleExtent([1 / 3, 10])
+      .on('zoom', this.zoomed)
 
-    const links = g.selectAll(".link")
-      .data(rt.descendants().slice(1));
+    // TODO: any better way to avoid selection?
+    const zoomArea = d3Select
+      .select('rect')
+      .call(zoom)
 
-    this.setState({
-      nodes: nodes,
-      links: links
-    })
+    // Move to initial location
+    zoomArea.call(zoom.transform, d3Zoom.zoomIdentity.translate(50, this.state.y));
   }
-
-
-  zoom = () => {
-    // const scale = d3Scale.scale
-    //   translation = d3.event.translate,
-    //   tbound = -h * scale,
-    //   bbound = h * scale,
-    //   lbound = (-w + m[1]) * scale,
-    //   rbound = (w - m[3]) * scale;
-    // // limit translation to thresholds
-    // translation = [
-    //   Math.max(Math.min(translation[0], rbound), lbound),
-    //   Math.max(Math.min(translation[1], bbound), tbound)
-    // ];
-    // d3.select(".drawarea")
-    //   .attr("transform", "translate(" + translation + ")" +
-    //     " scale(" + scale + ")");
-  }
-
 
 }
 
 
 TreeViewer.propTypes = {
 
-  // Style of the area used by the renderer
+  // Style of the area used by the D3.js renderer
   style: PropTypes.object,
 
-  // Tree data
+  // Tree data in D3.js tree format
   data: PropTypes.object,
 
+  // Key property name for the label
   label: PropTypes.string,
 
-  width: PropTypes.number,
-  height: PropTypes.number,
-  nodeSize: PropTypes.number
-};
+  // Size of tree node
+  nodeWidth: PropTypes.number
+}
 
-/**
- * Default values
- */
 TreeViewer.defaultProps = {
   data: {},
+  style: {
+    width: 1500,
+    height: 1000,
+    background: '#FFFFFF'
+  },
   label: 'name',
-  width: 1200,
-  height: 3500,
   nodeSize: 10
-};
+}
 
 export default TreeViewer
