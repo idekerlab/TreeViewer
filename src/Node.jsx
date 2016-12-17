@@ -50,7 +50,6 @@ class Node extends Component {
 
 
     const style = Object.assign({}, this.props.shapeStyle)
-    console.log(this.state.showTooltip)
 
     if(this.state.selected) {
       style.fill = 'red'
@@ -59,8 +58,6 @@ class Node extends Component {
     } else {
       style.fill = this.props.shapeStyle.fill
     }
-
-    console.log(style)
 
     return (
       <g

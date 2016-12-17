@@ -7,6 +7,8 @@ import * as d3Zoom from 'd3-zoom'
 import Link from './Link'
 import Node from './Node'
 
+import * as dagre from 'dagre'
+
 
 /**
  *
@@ -21,6 +23,38 @@ class TreeViewer extends Component {
     this.state = {
       rootTag: 'treeViewerRoot'
     }
+
+    this.createDag()
+  }
+
+  createDag = () => {
+
+    console.log("Generating DAG")
+    const g = new dagre.graphlib.Graph();
+
+    g.setGraph({});
+
+    g.setDefaultEdgeLabel(function() { return {}; });
+
+    g.setNode("kspacey",    { label: "Kevin Spacey",  width: 144, height: 100 });
+    g.setNode("swilliams",  { label: "Saul Williams", width: 160, height: 100 });
+    g.setNode("bpitt",      { label: "Brad Pitt",     width: 108, height: 100 });
+    g.setNode("hford",      { label: "Harrison Ford", width: 168, height: 100 });
+    g.setNode("lwilson",    { label: "Luke Wilson",   width: 144, height: 100 });
+    g.setNode("kbacon",     { label: "Kevin Bacon",   width: 121, height: 100 });
+
+// Add edges to the graph.
+    g.setEdge("kspacey",   "swilliams");
+    g.setEdge("swilliams", "kbacon");
+    g.setEdge("bpitt",     "kbacon");
+    g.setEdge("hford",     "lwilson");
+    g.setEdge("lwilson",   "kbacon");
+
+    dagre.layout(g);
+
+
+    console.log(g.nodes())
+    console.log(g.edges())
   }
 
 
@@ -103,9 +137,6 @@ class TreeViewer extends Component {
 
     const children = node.children;
     let nodes = [];
-
-    console.log(node)
-    console.log(children)
 
     const rootStyle = {
       fill: 'white',
