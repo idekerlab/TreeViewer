@@ -1,11 +1,8 @@
 import React, {Component, PropTypes} from 'react'
 
 import * as d3Hierarchy from 'd3-hierarchy'
-import * as d3Trans from 'd3-transition'
 import * as d3Select from 'd3-selection'
 import * as d3Zoom from 'd3-zoom'
-import * as d3Drag from 'd3-drag'
-
 
 import Link from './Link'
 import Node from './Node'
@@ -18,8 +15,17 @@ import Node from './Node'
  */
 class TreeViewer extends Component {
 
-  layoutTree = () => {
-    const {data, style} = this.props
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      rootTag: 'treeViewerRoot'
+    }
+  }
+
+
+  layoutTree = subtree => {
+    const {data, style} = subtree
     const width = style.width
     const height = style.height
 
@@ -42,20 +48,26 @@ class TreeViewer extends Component {
    * Pre-render tree using D3
    */
   componentWillMount() {
-    this.layoutTree()
+    this.layoutTree(this.props)
   }
 
   componentWillReceiveProps(nextProps) {
-    // this.layoutTree()
+    if(nextProps.data !== this.props.data) {
+      console.log("Updating tree--------------")
+      console.log(nextProps.data)
+      this.layoutTree(nextProps)
+    }
   }
 
 
   render() {
 
-    console.log('************* 222 TREE RENDERING )))))))))))))))))))))))))))))')
-
+    console.log("{{{{{{{{{{{{{{{{{{{{ Rendering TRE }}}}}}}}}}}}}}}}}}}}}}}}}}}}}")
     const links = this.getLinks(this.state.root);
     const nodes = this.getNodes(this.state.root);
+
+    console.log(links)
+    console.log(nodes)
 
     const areaStyle = {
       fill: 'none',
@@ -76,7 +88,7 @@ class TreeViewer extends Component {
 
 
         <g
-          id="root"
+          id={this.state.rootTag}
         >
             {links}
             {nodes}
@@ -91,6 +103,9 @@ class TreeViewer extends Component {
 
     const children = node.children;
     let nodes = [];
+
+    console.log(node)
+    console.log(children)
 
     const rootStyle = {
       fill: 'white',
@@ -223,7 +238,7 @@ class TreeViewer extends Component {
 
 
   zoomed = () => {
-    const treeArea = d3Select.select('#root')
+    const treeArea = d3Select.select('#' + this.state.rootTag)
     const t = d3Select.event.transform
     treeArea.attr("transform", t);
   }

@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 import Shape from './Shape'
-import Tooltip from './Tooltip'
+
 
 const DEF_EVENT_HANDLERS = {
   nodeSelected: selectedNode => {
