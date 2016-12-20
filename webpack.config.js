@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
   cache: true,
   devtool: 'source-map',
-  entry: path.resolve(__dirname, "src/TreeViewer.jsx"),
+  entry: path.resolve(__dirname, "src/index.js"),
   output: {
     path: path.resolve(__dirname, "build"),
     library: "TreeViewer",

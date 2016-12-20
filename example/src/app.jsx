@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
-import TreeViewer from 'tree-viewer'
+import {TreeViewer, DAGViewer} from 'tree-viewer'
 
 // Sample network data in Cytoscape.js JSON format
 const data = require('./tree3.json');
@@ -13,14 +13,26 @@ const width = document.body.clientWidth
 
 const style = {
   width: width,
-  height: 1000
+  height: 500
+}
+const style2 = {
+  width: width,
+  height: 500,
+  background: 'black'
 }
 
 ReactDOM.render(
-  <TreeViewer
-    data={data}
-    label="long_name"
-    style={style}
-  />,
+  <div>
+    <TreeViewer
+      data={data}
+      label="long_name"
+      style={style}
+    />
+    <DAGViewer
+      data={data}
+      label="name"
+      style={style2}
+    />
+  </div>,
   document.getElementById(TAG)
 );

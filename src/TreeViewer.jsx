@@ -1,13 +1,11 @@
 import React, {Component, PropTypes} from 'react'
 
 import * as d3Hierarchy from 'd3-hierarchy'
-import * as d3Select from 'd3-selection'
-import * as d3Zoom from 'd3-zoom'
 
 import Link from './Link'
 import Node from './Node'
 
-import * as dagre from 'dagre'
+import ZoomableViewer from './ZoomableViewer'
 
 
 /**
@@ -21,41 +19,11 @@ class TreeViewer extends Component {
     super(props);
 
     this.state = {
-      rootTag: 'treeViewerRoot'
     }
 
-    this.createDag()
   }
 
-  createDag = () => {
 
-    console.log("Generating DAG")
-    const g = new dagre.graphlib.Graph();
-
-    g.setGraph({});
-
-    g.setDefaultEdgeLabel(function() { return {}; });
-
-    g.setNode("kspacey",    { label: "Kevin Spacey",  width: 144, height: 100 });
-    g.setNode("swilliams",  { label: "Saul Williams", width: 160, height: 100 });
-    g.setNode("bpitt",      { label: "Brad Pitt",     width: 108, height: 100 });
-    g.setNode("hford",      { label: "Harrison Ford", width: 168, height: 100 });
-    g.setNode("lwilson",    { label: "Luke Wilson",   width: 144, height: 100 });
-    g.setNode("kbacon",     { label: "Kevin Bacon",   width: 121, height: 100 });
-
-// Add edges to the graph.
-    g.setEdge("kspacey",   "swilliams");
-    g.setEdge("swilliams", "kbacon");
-    g.setEdge("bpitt",     "kbacon");
-    g.setEdge("hford",     "lwilson");
-    g.setEdge("lwilson",   "kbacon");
-
-    dagre.layout(g);
-
-
-    console.log(g.nodes())
-    console.log(g.edges())
-  }
 
 
   layoutTree = subtree => {
@@ -76,7 +44,6 @@ class TreeViewer extends Component {
       cluster: cluster,
       y: height/2.0
     })
-
   }
   /**
    * Pre-render tree using D3
@@ -103,31 +70,18 @@ class TreeViewer extends Component {
     console.log(links)
     console.log(nodes)
 
-    const areaStyle = {
-      fill: 'none',
-      pointerEvents: 'all'
-    }
 
     return (
-      <svg
-        width={this.props.style.width}
-        height={this.props.style.height}
-      >
-        <rect
-          width={this.props.style.width}
-          height={this.props.style.height}
-          style={areaStyle}
+      <ZoomableViewer
+        style={this.props.style}
+        initialPosition={{
+          x: 50,
+          y: this.props.style.height/2.0
+        }}
         >
-        </rect>
-
-
-        <g
-          id={this.state.rootTag}
-        >
-            {links}
-            {nodes}
-        </g>
-      </svg>
+        {links}
+        {nodes}
+      </ZoomableViewer>
     )
   }
 
@@ -264,28 +218,6 @@ class TreeViewer extends Component {
 
     return defStyle
 
-  }
-
-
-
-  zoomed = () => {
-    const treeArea = d3Select.select('#' + this.state.rootTag)
-    const t = d3Select.event.transform
-    treeArea.attr("transform", t);
-  }
-
-  componentDidMount() {
-    const zoom = d3Zoom.zoom()
-      .scaleExtent([1 / 3, 10])
-      .on('zoom', this.zoomed)
-
-    // TODO: any better way to avoid selection?
-    const zoomArea = d3Select
-      .select('rect')
-      .call(zoom)
-
-    // Move to initial location
-    zoomArea.call(zoom.transform, d3Zoom.zoomIdentity.translate(50, this.props.style.height/2));
   }
 
 }

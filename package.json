@@ -41,7 +41,8 @@
     "d3-transition": "^1.0.3",
     "d3-zoom": "^1.1.1",
     "dagre": "^0.7.4",
-    "react-smooth": "^0.1.14"
+    "react-smooth": "^0.1.14",
+    "shortid": "^2.2.6"
   },
   "peerDependencies": {},
   "devDependencies": {

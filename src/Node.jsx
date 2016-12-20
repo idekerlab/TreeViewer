@@ -97,6 +97,9 @@ class Node extends Component {
 
 
   getTextElement = data => {
+    console.log("DT:")
+    console.log(data)
+
     const key = this.props.labelKey
     let text = data[key]
     if (text === undefined || text === '') {
