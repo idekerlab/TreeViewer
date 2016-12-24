@@ -1,0 +1,1251 @@
+{
+  "format_version" : "1.0",
+  "generated_by" : "cytoscape-3.4.0",
+  "target_cytoscapejs_version" : "~2.1",
+  "data" : {
+    "shared_name" : "test.graphml_3",
+    "name" : "test.graphml_3",
+    "SUID" : 866,
+    "__Annotations" : [ ],
+    "selected" : true
+  },
+  "elements" : {
+    "nodes" : [ {
+      "data" : {
+        "id" : "907",
+        "shared_name" : "GO:0031968",
+        "name" : "GO:0031968",
+        "SUID" : 907,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 677.0,
+        "y" : 362.5
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "906",
+        "shared_name" : "GO:0044424",
+        "name" : "GO:0044424",
+        "SUID" : 906,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 137.0,
+        "y" : 644.5
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "905",
+        "shared_name" : "GO:0032991",
+        "name" : "GO:0032991",
+        "SUID" : 905,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 587.0,
+        "y" : 812.0
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "904",
+        "shared_name" : "GO:0098796",
+        "name" : "GO:0098796",
+        "SUID" : 904,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 767.0,
+        "y" : 255.5
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "903",
+        "shared_name" : "GO:0005575",
+        "name" : "GO:0005575",
+        "SUID" : 903,
+        "selected" : false
+      },
+      "position" : {
+        "x" : -133.0,
+        "y" : 415.125
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "902",
+        "shared_name" : "GO:0044446",
+        "name" : "GO:0044446",
+        "SUID" : 902,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 407.0,
+        "y" : 547.25
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "901",
+        "shared_name" : "GO:0044444",
+        "name" : "GO:0044444",
+        "SUID" : 901,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 317.0,
+        "y" : 637.75
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "900",
+        "shared_name" : "GO:0005739",
+        "name" : "GO:0005739",
+        "SUID" : 900,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 407.0,
+        "y" : 621.875
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "899",
+        "shared_name" : "GO:0005740",
+        "name" : "GO:0005740",
+        "SUID" : 899,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 587.0,
+        "y" : 575.875
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "898",
+        "shared_name" : "GO:0044464",
+        "name" : "GO:0044464",
+        "SUID" : 898,
+        "selected" : false
+      },
+      "position" : {
+        "x" : -43.0,
+        "y" : 662.25
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "897",
+        "shared_name" : "GO:0005741",
+        "name" : "GO:0005741",
+        "SUID" : 897,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 767.0,
+        "y" : 370.0
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "896",
+        "shared_name" : "GO:00SUPER",
+        "name" : "GO:00SUPER",
+        "SUID" : 896,
+        "selected" : false
+      },
+      "position" : {
+        "x" : -223.0,
+        "y" : 415.125
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "895",
+        "shared_name" : "GO:0043229",
+        "name" : "GO:0043229",
+        "SUID" : 895,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 227.0,
+        "y" : 564.875
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "894",
+        "shared_name" : "GO:0043234",
+        "name" : "GO:0043234",
+        "SUID" : 894,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 677.0,
+        "y" : 812.0
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "893",
+        "shared_name" : "GO:0098805",
+        "name" : "GO:0098805",
+        "SUID" : 893,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 587.0,
+        "y" : 238.0
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "892",
+        "shared_name" : "GO:0005622",
+        "name" : "GO:0005622",
+        "SUID" : 892,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 47.0,
+        "y" : 662.25
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "891",
+        "shared_name" : "GO:0044455",
+        "name" : "GO:0044455",
+        "SUID" : 891,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 767.0,
+        "y" : 579.75
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "890",
+        "shared_name" : "GO:0031966",
+        "name" : "GO:0031966",
+        "SUID" : 890,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 677.0,
+        "y" : 575.875
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "889",
+        "shared_name" : "GO:0044429",
+        "name" : "GO:0044429",
+        "SUID" : 889,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 497.0,
+        "y" : 614.75
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "888",
+        "shared_name" : "GO:0044422",
+        "name" : "GO:0044422",
+        "SUID" : 888,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 317.0,
+        "y" : 387.75
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "887",
+        "shared_name" : "GO:0016020",
+        "name" : "GO:0016020",
+        "SUID" : 887,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 407.0,
+        "y" : 256.5
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "886",
+        "shared_name" : "GO:0098799",
+        "name" : "GO:0098799",
+        "SUID" : 886,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 857.0,
+        "y" : 465.5
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "885",
+        "shared_name" : "GO:0098588",
+        "name" : "GO:0098588",
+        "SUID" : 885,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 587.0,
+        "y" : 362.5
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "884",
+        "shared_name" : "GO:0005737",
+        "name" : "GO:0005737",
+        "SUID" : 884,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 227.0,
+        "y" : 628.875
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "883",
+        "shared_name" : "GO:0019867",
+        "name" : "GO:0019867",
+        "SUID" : 883,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 587.0,
+        "y" : 288.0
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "882",
+        "shared_name" : "GO:0031090",
+        "name" : "GO:0031090",
+        "SUID" : 882,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 497.0,
+        "y" : 387.0
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "881",
+        "shared_name" : "GO:0044425",
+        "name" : "GO:0044425",
+        "SUID" : 881,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 677.0,
+        "y" : 280.875
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "880",
+        "shared_name" : "GO:0043227",
+        "name" : "GO:0043227",
+        "SUID" : 880,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 227.0,
+        "y" : 455.375
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "879",
+        "shared_name" : "GO:0031967",
+        "name" : "GO:0031967",
+        "SUID" : 879,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 497.0,
+        "y" : 497.625
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "878",
+        "shared_name" : "GO:0043226",
+        "name" : "GO:0043226",
+        "SUID" : 878,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 137.0,
+        "y" : 447.125
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "877",
+        "shared_name" : "GO:0098798",
+        "name" : "GO:0098798",
+        "SUID" : 877,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 767.0,
+        "y" : 649.75
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "876",
+        "shared_name" : "GO:0043231",
+        "name" : "GO:0043231",
+        "SUID" : 876,
+        "selected" : false
+      },
+      "position" : {
+        "x" : 317.0,
+        "y" : 541.125
+      },
+      "selected" : false
+    } ],
+    "edges" : [ {
+      "data" : {
+        "id" : "970",
+        "source" : "907",
+        "target" : "885",
+        "shared_name" : "GO:0031968 (-) GO:0098588",
+        "name" : "GO:0031968 (-) GO:0098588",
+        "interaction" : "-",
+        "SUID" : 970,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "969",
+        "source" : "907",
+        "target" : "883",
+        "shared_name" : "GO:0031968 (-) GO:0019867",
+        "name" : "GO:0031968 (-) GO:0019867",
+        "interaction" : "-",
+        "SUID" : 969,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "968",
+        "source" : "907",
+        "target" : "893",
+        "shared_name" : "GO:0031968 (-) GO:0098805",
+        "name" : "GO:0031968 (-) GO:0098805",
+        "interaction" : "-",
+        "SUID" : 968,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "967",
+        "source" : "907",
+        "target" : "879",
+        "shared_name" : "GO:0031968 (-) GO:0031967",
+        "name" : "GO:0031968 (-) GO:0031967",
+        "interaction" : "-",
+        "SUID" : 967,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "966",
+        "source" : "907",
+        "target" : "906",
+        "shared_name" : "GO:0031968 (-) GO:0044424",
+        "name" : "GO:0031968 (-) GO:0044424",
+        "interaction" : "-",
+        "SUID" : 966,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "965",
+        "source" : "906",
+        "target" : "892",
+        "shared_name" : "GO:0044424 (-) GO:0005622",
+        "name" : "GO:0044424 (-) GO:0005622",
+        "interaction" : "-",
+        "SUID" : 965,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "964",
+        "source" : "906",
+        "target" : "898",
+        "shared_name" : "GO:0044424 (-) GO:0044464",
+        "name" : "GO:0044424 (-) GO:0044464",
+        "interaction" : "-",
+        "SUID" : 964,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "963",
+        "source" : "905",
+        "target" : "903",
+        "shared_name" : "GO:0032991 (-) GO:0005575",
+        "name" : "GO:0032991 (-) GO:0005575",
+        "interaction" : "-",
+        "SUID" : 963,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "962",
+        "source" : "904",
+        "target" : "887",
+        "shared_name" : "GO:0098796 (-) GO:0016020",
+        "name" : "GO:0098796 (-) GO:0016020",
+        "interaction" : "-",
+        "SUID" : 962,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "961",
+        "source" : "904",
+        "target" : "894",
+        "shared_name" : "GO:0098796 (-) GO:0043234",
+        "name" : "GO:0098796 (-) GO:0043234",
+        "interaction" : "-",
+        "SUID" : 961,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "960",
+        "source" : "904",
+        "target" : "881",
+        "shared_name" : "GO:0098796 (-) GO:0044425",
+        "name" : "GO:0098796 (-) GO:0044425",
+        "interaction" : "-",
+        "SUID" : 960,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "959",
+        "source" : "903",
+        "target" : "896",
+        "shared_name" : "GO:0005575 (-) GO:00SUPER",
+        "name" : "GO:0005575 (-) GO:00SUPER",
+        "interaction" : "-",
+        "SUID" : 959,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "958",
+        "source" : "902",
+        "target" : "888",
+        "shared_name" : "GO:0044446 (-) GO:0044422",
+        "name" : "GO:0044446 (-) GO:0044422",
+        "interaction" : "-",
+        "SUID" : 958,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "957",
+        "source" : "902",
+        "target" : "895",
+        "shared_name" : "GO:0044446 (-) GO:0043229",
+        "name" : "GO:0044446 (-) GO:0043229",
+        "interaction" : "-",
+        "SUID" : 957,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "956",
+        "source" : "902",
+        "target" : "906",
+        "shared_name" : "GO:0044446 (-) GO:0044424",
+        "name" : "GO:0044446 (-) GO:0044424",
+        "interaction" : "-",
+        "SUID" : 956,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "955",
+        "source" : "901",
+        "target" : "906",
+        "shared_name" : "GO:0044444 (-) GO:0044424",
+        "name" : "GO:0044444 (-) GO:0044424",
+        "interaction" : "-",
+        "SUID" : 955,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "954",
+        "source" : "901",
+        "target" : "884",
+        "shared_name" : "GO:0044444 (-) GO:0005737",
+        "name" : "GO:0044444 (-) GO:0005737",
+        "interaction" : "-",
+        "SUID" : 954,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "953",
+        "source" : "900",
+        "target" : "901",
+        "shared_name" : "GO:0005739 (-) GO:0044444",
+        "name" : "GO:0005739 (-) GO:0044444",
+        "interaction" : "-",
+        "SUID" : 953,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "952",
+        "source" : "900",
+        "target" : "876",
+        "shared_name" : "GO:0005739 (-) GO:0043231",
+        "name" : "GO:0005739 (-) GO:0043231",
+        "interaction" : "-",
+        "SUID" : 952,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "951",
+        "source" : "899",
+        "target" : "889",
+        "shared_name" : "GO:0005740 (-) GO:0044429",
+        "name" : "GO:0005740 (-) GO:0044429",
+        "interaction" : "-",
+        "SUID" : 951,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "950",
+        "source" : "899",
+        "target" : "879",
+        "shared_name" : "GO:0005740 (-) GO:0031967",
+        "name" : "GO:0005740 (-) GO:0031967",
+        "interaction" : "-",
+        "SUID" : 950,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "949",
+        "source" : "898",
+        "target" : "903",
+        "shared_name" : "GO:0044464 (-) GO:0005575",
+        "name" : "GO:0044464 (-) GO:0005575",
+        "interaction" : "-",
+        "SUID" : 949,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "948",
+        "source" : "897",
+        "target" : "907",
+        "shared_name" : "GO:0005741 (-) GO:0031968",
+        "name" : "GO:0005741 (-) GO:0031968",
+        "interaction" : "-",
+        "SUID" : 948,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "947",
+        "source" : "897",
+        "target" : "890",
+        "shared_name" : "GO:0005741 (-) GO:0031966",
+        "name" : "GO:0005741 (-) GO:0031966",
+        "interaction" : "-",
+        "SUID" : 947,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "946",
+        "source" : "895",
+        "target" : "878",
+        "shared_name" : "GO:0043229 (-) GO:0043226",
+        "name" : "GO:0043229 (-) GO:0043226",
+        "interaction" : "-",
+        "SUID" : 946,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "945",
+        "source" : "895",
+        "target" : "906",
+        "shared_name" : "GO:0043229 (-) GO:0044424",
+        "name" : "GO:0043229 (-) GO:0044424",
+        "interaction" : "-",
+        "SUID" : 945,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "944",
+        "source" : "894",
+        "target" : "905",
+        "shared_name" : "GO:0043234 (-) GO:0032991",
+        "name" : "GO:0043234 (-) GO:0032991",
+        "interaction" : "-",
+        "SUID" : 944,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "943",
+        "source" : "893",
+        "target" : "887",
+        "shared_name" : "GO:0098805 (-) GO:0016020",
+        "name" : "GO:0098805 (-) GO:0016020",
+        "interaction" : "-",
+        "SUID" : 943,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "942",
+        "source" : "892",
+        "target" : "898",
+        "shared_name" : "GO:0005622 (-) GO:0044464",
+        "name" : "GO:0005622 (-) GO:0044464",
+        "interaction" : "-",
+        "SUID" : 942,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "941",
+        "source" : "891",
+        "target" : "889",
+        "shared_name" : "GO:0044455 (-) GO:0044429",
+        "name" : "GO:0044455 (-) GO:0044429",
+        "interaction" : "-",
+        "SUID" : 941,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "940",
+        "source" : "891",
+        "target" : "881",
+        "shared_name" : "GO:0044455 (-) GO:0044425",
+        "name" : "GO:0044455 (-) GO:0044425",
+        "interaction" : "-",
+        "SUID" : 940,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "939",
+        "source" : "891",
+        "target" : "890",
+        "shared_name" : "GO:0044455 (-) GO:0031966",
+        "name" : "GO:0044455 (-) GO:0031966",
+        "interaction" : "-",
+        "SUID" : 939,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "938",
+        "source" : "890",
+        "target" : "899",
+        "shared_name" : "GO:0031966 (-) GO:0005740",
+        "name" : "GO:0031966 (-) GO:0005740",
+        "interaction" : "-",
+        "SUID" : 938,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "937",
+        "source" : "890",
+        "target" : "889",
+        "shared_name" : "GO:0031966 (-) GO:0044429",
+        "name" : "GO:0031966 (-) GO:0044429",
+        "interaction" : "-",
+        "SUID" : 937,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "936",
+        "source" : "890",
+        "target" : "882",
+        "shared_name" : "GO:0031966 (-) GO:0031090",
+        "name" : "GO:0031966 (-) GO:0031090",
+        "interaction" : "-",
+        "SUID" : 936,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "935",
+        "source" : "889",
+        "target" : "901",
+        "shared_name" : "GO:0044429 (-) GO:0044444",
+        "name" : "GO:0044429 (-) GO:0044444",
+        "interaction" : "-",
+        "SUID" : 935,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "934",
+        "source" : "889",
+        "target" : "902",
+        "shared_name" : "GO:0044429 (-) GO:0044446",
+        "name" : "GO:0044429 (-) GO:0044446",
+        "interaction" : "-",
+        "SUID" : 934,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "933",
+        "source" : "889",
+        "target" : "900",
+        "shared_name" : "GO:0044429 (-) GO:0005739",
+        "name" : "GO:0044429 (-) GO:0005739",
+        "interaction" : "-",
+        "SUID" : 933,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "932",
+        "source" : "888",
+        "target" : "878",
+        "shared_name" : "GO:0044422 (-) GO:0043226",
+        "name" : "GO:0044422 (-) GO:0043226",
+        "interaction" : "-",
+        "SUID" : 932,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "931",
+        "source" : "888",
+        "target" : "903",
+        "shared_name" : "GO:0044422 (-) GO:0005575",
+        "name" : "GO:0044422 (-) GO:0005575",
+        "interaction" : "-",
+        "SUID" : 931,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "930",
+        "source" : "887",
+        "target" : "903",
+        "shared_name" : "GO:0016020 (-) GO:0005575",
+        "name" : "GO:0016020 (-) GO:0005575",
+        "interaction" : "-",
+        "SUID" : 930,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "929",
+        "source" : "886",
+        "target" : "904",
+        "shared_name" : "GO:0098799 (-) GO:0098796",
+        "name" : "GO:0098799 (-) GO:0098796",
+        "interaction" : "-",
+        "SUID" : 929,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "928",
+        "source" : "886",
+        "target" : "897",
+        "shared_name" : "GO:0098799 (-) GO:0005741",
+        "name" : "GO:0098799 (-) GO:0005741",
+        "interaction" : "-",
+        "SUID" : 928,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "927",
+        "source" : "886",
+        "target" : "877",
+        "shared_name" : "GO:0098799 (-) GO:0098798",
+        "name" : "GO:0098799 (-) GO:0098798",
+        "interaction" : "-",
+        "SUID" : 927,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "926",
+        "source" : "886",
+        "target" : "891",
+        "shared_name" : "GO:0098799 (-) GO:0044455",
+        "name" : "GO:0098799 (-) GO:0044455",
+        "interaction" : "-",
+        "SUID" : 926,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "925",
+        "source" : "885",
+        "target" : "882",
+        "shared_name" : "GO:0098588 (-) GO:0031090",
+        "name" : "GO:0098588 (-) GO:0031090",
+        "interaction" : "-",
+        "SUID" : 925,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "924",
+        "source" : "884",
+        "target" : "906",
+        "shared_name" : "GO:0005737 (-) GO:0044424",
+        "name" : "GO:0005737 (-) GO:0044424",
+        "interaction" : "-",
+        "SUID" : 924,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "923",
+        "source" : "883",
+        "target" : "887",
+        "shared_name" : "GO:0019867 (-) GO:0016020",
+        "name" : "GO:0019867 (-) GO:0016020",
+        "interaction" : "-",
+        "SUID" : 923,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "922",
+        "source" : "882",
+        "target" : "880",
+        "shared_name" : "GO:0031090 (-) GO:0043227",
+        "name" : "GO:0031090 (-) GO:0043227",
+        "interaction" : "-",
+        "SUID" : 922,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "921",
+        "source" : "882",
+        "target" : "888",
+        "shared_name" : "GO:0031090 (-) GO:0044422",
+        "name" : "GO:0031090 (-) GO:0044422",
+        "interaction" : "-",
+        "SUID" : 921,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "920",
+        "source" : "882",
+        "target" : "887",
+        "shared_name" : "GO:0031090 (-) GO:0016020",
+        "name" : "GO:0031090 (-) GO:0016020",
+        "interaction" : "-",
+        "SUID" : 920,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "919",
+        "source" : "881",
+        "target" : "887",
+        "shared_name" : "GO:0044425 (-) GO:0016020",
+        "name" : "GO:0044425 (-) GO:0016020",
+        "interaction" : "-",
+        "SUID" : 919,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "918",
+        "source" : "881",
+        "target" : "903",
+        "shared_name" : "GO:0044425 (-) GO:0005575",
+        "name" : "GO:0044425 (-) GO:0005575",
+        "interaction" : "-",
+        "SUID" : 918,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "917",
+        "source" : "880",
+        "target" : "878",
+        "shared_name" : "GO:0043227 (-) GO:0043226",
+        "name" : "GO:0043227 (-) GO:0043226",
+        "interaction" : "-",
+        "SUID" : 917,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "916",
+        "source" : "879",
+        "target" : "880",
+        "shared_name" : "GO:0031967 (-) GO:0043227",
+        "name" : "GO:0031967 (-) GO:0043227",
+        "interaction" : "-",
+        "SUID" : 916,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "915",
+        "source" : "879",
+        "target" : "898",
+        "shared_name" : "GO:0031967 (-) GO:0044464",
+        "name" : "GO:0031967 (-) GO:0044464",
+        "interaction" : "-",
+        "SUID" : 915,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "914",
+        "source" : "879",
+        "target" : "902",
+        "shared_name" : "GO:0031967 (-) GO:0044446",
+        "name" : "GO:0031967 (-) GO:0044446",
+        "interaction" : "-",
+        "SUID" : 914,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "913",
+        "source" : "878",
+        "target" : "903",
+        "shared_name" : "GO:0043226 (-) GO:0005575",
+        "name" : "GO:0043226 (-) GO:0005575",
+        "interaction" : "-",
+        "SUID" : 913,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "912",
+        "source" : "877",
+        "target" : "889",
+        "shared_name" : "GO:0098798 (-) GO:0044429",
+        "name" : "GO:0098798 (-) GO:0044429",
+        "interaction" : "-",
+        "SUID" : 912,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "911",
+        "source" : "877",
+        "target" : "894",
+        "shared_name" : "GO:0098798 (-) GO:0043234",
+        "name" : "GO:0098798 (-) GO:0043234",
+        "interaction" : "-",
+        "SUID" : 911,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "910",
+        "source" : "877",
+        "target" : "900",
+        "shared_name" : "GO:0098798 (-) GO:0005739",
+        "name" : "GO:0098798 (-) GO:0005739",
+        "interaction" : "-",
+        "SUID" : 910,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "909",
+        "source" : "876",
+        "target" : "880",
+        "shared_name" : "GO:0043231 (-) GO:0043227",
+        "name" : "GO:0043231 (-) GO:0043227",
+        "interaction" : "-",
+        "SUID" : 909,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "908",
+        "source" : "876",
+        "target" : "895",
+        "shared_name" : "GO:0043231 (-) GO:0043229",
+        "name" : "GO:0043231 (-) GO:0043229",
+        "interaction" : "-",
+        "SUID" : 908,
+        "shared_interaction" : "-",
+        "selected" : false
+      },
+      "selected" : false
+    } ]
+  }
+}

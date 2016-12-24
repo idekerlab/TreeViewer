@@ -25,34 +25,49 @@ class DAGViewer extends Component {
 
   createDag = dag => {
 
-    console.log("Generating DAG")
+
+    console.log("Generating DAG 2")
+
+    const jsnodes = this.props.data.elements.nodes
+    const jsedges = this.props.data.elements.edges
+
     const g = new dagre.graphlib.Graph();
 
     g.setGraph({});
 
     g.setDefaultEdgeLabel(function() { return {}; });
 
-    g.setNode("kspacey",    { label: "Kevin Spacey",  width: 144, height: 100 });
-    g.setNode("swilliams",  { label: "Saul Williams", width: 160, height: 100 });
-    g.setNode("bpitt",      { label: "Brad Pitt",     width: 108, height: 100 });
-    g.setNode("hford",      { label: "Harrison Ford", width: 168, height: 100 });
-    g.setNode("lwilson",    { label: "Luke Wilson",   width: 144, height: 100 });
-    g.setNode("kbacon",     { label: "Kevin Bacon",   width: 121, height: 100 });
+    jsnodes.forEach(n => {
+      g.setNode(n.data.id, { label: n.data.name,  width: 100, height: 100 });
 
-    g.setNode("foo",     { label: "foo",   width: 121, height: 100 });
-    g.setNode("bar",     { label: "bar",   width: 121, height: 100 });
-    g.setNode("baz",     { label: "baz",   width: 121, height: 100 });
+    })
+
+    jsedges.forEach(e => {
+      g.setEdge(e.data.source, e.data.target);
+
+    })
+
+    // g.setNode("kspacey",    { label: "Kevin Spacey",  width: 144, height: 100 });
+    // g.setNode("swilliams",  { label: "Saul Williams", width: 160, height: 100 });
+    // g.setNode("bpitt",      { label: "Brad Pitt",     width: 108, height: 100 });
+    // g.setNode("hford",      { label: "Harrison Ford", width: 168, height: 100 });
+    // g.setNode("lwilson",    { label: "Luke Wilson",   width: 144, height: 100 });
+    // g.setNode("kbacon",     { label: "Kevin Bacon",   width: 121, height: 100 });
+    //
+    // g.setNode("foo",     { label: "foo",   width: 121, height: 100 });
+    // g.setNode("bar",     { label: "bar",   width: 121, height: 100 });
+    // g.setNode("baz",     { label: "baz",   width: 121, height: 100 });
 
 // Add edges to the graph.
-    g.setEdge("kspacey",   "swilliams");
-    g.setEdge("swilliams", "kbacon");
-    g.setEdge("bpitt",     "kbacon");
-    g.setEdge("hford",     "lwilson");
-    g.setEdge("lwilson",   "kbacon");
-
-    g.setEdge("kbacon", "foo");
-    g.setEdge("kbacon", "bar");
-    g.setEdge("kbacon", "baz");
+//     g.setEdge("kspacey",   "swilliams");
+//     g.setEdge("swilliams", "kbacon");
+//     g.setEdge("bpitt",     "kbacon");
+//     g.setEdge("hford",     "lwilson");
+//     g.setEdge("lwilson",   "kbacon");
+//
+//     g.setEdge("kbacon", "foo");
+//     g.setEdge("kbacon", "bar");
+//     g.setEdge("kbacon", "baz");
 
     dagre.layout(g);
 
