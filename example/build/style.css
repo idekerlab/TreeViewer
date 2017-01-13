@@ -8,11 +8,11 @@
 }
 
 svg {
-    background: #f9f9f9;
+    background: #272729;
 }
 
 .node circle {
-    opacity: 0.8;
+    opacity: 1;
 }
 
 
@@ -22,16 +22,24 @@ svg {
 
 .link {
     fill: none;
-    stroke: #777777;
+    stroke: red;
     stroke-opacity: 0.2;
     stroke-width: 0.1em;
 }
 
 text {
-    fill: #555555;
+    fill: #FFFFFF;
     font-weight: 400;
     font-size: 0.7em;
-    font-family: "SansSerif";
+    font-family: "Helvetica Neue";
+}
+
+.origin text {
+    fill: white;
+    font-weight: 400;
+    font-size: 1em;
+    font-family: "Helvetica Neue";
+
 }
 
 body {

@@ -23,9 +23,6 @@ class TreeViewer extends Component {
 
   }
 
-
-
-
   layoutTree = subtree => {
     const {data, style} = subtree
     const width = style.width

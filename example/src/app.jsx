@@ -4,7 +4,7 @@ import {TreeViewer, DAGViewer} from 'tree-viewer'
 
 // Sample network data in Cytoscape.js JSON format
 const data = require('./tree3.json');
-const dag = require('./dag1.json');
+const dag = require('./dag3.json');
 
 // HTML section to be used for rendering component
 const TAG = 'viewer';
@@ -18,17 +18,17 @@ const style = {
 }
 const style2 = {
   width: width,
-  height: 500,
+  height: 1200,
   background: 'black'
 }
 
 ReactDOM.render(
   <div>
-    <TreeViewer
-      data={data}
-      label="long_name"
-      style={style}
-    />
+    {/*<TreeViewer*/}
+      {/*data={data}*/}
+      {/*label="long_name"*/}
+      {/*style={style}*/}
+    {/*/>*/}
     <DAGViewer
       data={dag}
       label="name"

@@ -92,14 +92,11 @@ class Node extends Component {
   }
 
   getY = () => {
-    return this.props.isLeaf ? this.props.nodeSize : (this.props.nodeSize / 2);
+    return this.props.isLeaf ? this.props.nodeSize : (this.props.nodeSize / 2 + 10);
   }
 
 
   getTextElement = data => {
-    console.log("DT:")
-    console.log(data)
-
     const key = this.props.labelKey
     let text = data[key]
     if (text === undefined || text === '') {
@@ -165,7 +162,7 @@ class Node extends Component {
 
   getStyle = () => {
     return {
-      textAnchor: this.getAnchor()
+      textAnchor: this.getAnchor(),
     }
   }
 

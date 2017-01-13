@@ -19,12 +19,12 @@ class DAGViewer extends Component {
 
     this.state = {
       dagNodes: [],
-      dagEdges: []
+      dagEdges: [],
     }
   }
 
-  createDag = dag => {
 
+  createDag = () => {
 
     console.log("Generating DAG 2")
 
@@ -34,85 +34,86 @@ class DAGViewer extends Component {
     const g = new dagre.graphlib.Graph();
 
     g.setGraph({});
-
-    g.setDefaultEdgeLabel(function() { return {}; });
+    g.setDefaultEdgeLabel(() => ({}))
 
     jsnodes.forEach(n => {
-      g.setNode(n.data.id, { label: n.data.name,  width: 100, height: 100 });
+      g.setNode(n.data.id, { label: n.data.name, type: n.data.type, width: 30, height: 30 });
 
     })
+
+    const edgeMap = {}
 
     jsedges.forEach(e => {
       g.setEdge(e.data.source, e.data.target);
-
+      edgeMap[e.data.source+e.data.target] = e.data.in_tree
     })
 
-    // g.setNode("kspacey",    { label: "Kevin Spacey",  width: 144, height: 100 });
-    // g.setNode("swilliams",  { label: "Saul Williams", width: 160, height: 100 });
-    // g.setNode("bpitt",      { label: "Brad Pitt",     width: 108, height: 100 });
-    // g.setNode("hford",      { label: "Harrison Ford", width: 168, height: 100 });
-    // g.setNode("lwilson",    { label: "Luke Wilson",   width: 144, height: 100 });
-    // g.setNode("kbacon",     { label: "Kevin Bacon",   width: 121, height: 100 });
-    //
-    // g.setNode("foo",     { label: "foo",   width: 121, height: 100 });
-    // g.setNode("bar",     { label: "bar",   width: 121, height: 100 });
-    // g.setNode("baz",     { label: "baz",   width: 121, height: 100 });
+    console.log(edgeMap)
 
-// Add edges to the graph.
-//     g.setEdge("kspacey",   "swilliams");
-//     g.setEdge("swilliams", "kbacon");
-//     g.setEdge("bpitt",     "kbacon");
-//     g.setEdge("hford",     "lwilson");
-//     g.setEdge("lwilson",   "kbacon");
-//
-//     g.setEdge("kbacon", "foo");
-//     g.setEdge("kbacon", "bar");
-//     g.setEdge("kbacon", "baz");
-
+    // Layout using the library
     dagre.layout(g);
 
-
-    const graph = {}
     g.nodes().forEach(v => {
       const n = g.node(v)
       const x = n.x
       const y = n.y
 
-      g.node(v).x = x
-      g.node(v).y = y * 3
+      g.node(v).x = x * 0.6
+      g.node(v).y = y * 2.3
     })
 
     const nodes = this.getNodes(g)
-    const links = this.getLinks(g)
+    const links = this.getLinks(g, edgeMap)
 
-    this.setState({dagNodes: nodes})
-    this.setState({dagLinks: links})
+    this.setState({
+      dagNodes: nodes,
+      dagLinks: links
+    })
   }
 
 
   getNodes = g => {
-    const style = {
-      fill: 'blue',
-      stroke: '#888888',
-      strokeOpacity: 1,
-      strokeWidth: 2
-    }
 
     const vs = g.nodes()
     const nodes = []
 
     vs.forEach(v => {
+
+      const style = {
+        fill: '#0099CC',
+        strokeWidth: 0
+      }
+
       const node = g.node(v)
 
-      console.log(node)
+      const dType = node.type
+      let isLeaf = false
+
+
+      let nodeSize = 5
+
+      let nodeType = 'node'
+      if(dType === 'gene') {
+        isLeaf = true
+        nodeSize = 3
+        style.fill = '#FFFFFF'
+      } else if(dType === 'origin') {
+
+        console.log('------------------------ !!!!!!!!!!!!! ORG!')
+        nodeSize = 20
+        nodeType = 'origin'
+      }
+
       nodes.push(
         <Node
           key={Math.random()}
+          nodeType={nodeType}
           id={node.label}
           data={{name: node.label}}
           position={{x: node.x, y: node.y}}
-          nodeSize={20}
-          fontSize='1em'
+          isLeaf={isLeaf}
+          nodeSize={nodeSize}
+          fontSize='2em'
           labelKey="name"
           shapeStyle={style}
         />);
@@ -122,20 +123,33 @@ class DAGViewer extends Component {
     return nodes
   }
 
-  getLinks = g => {
-    const style = {
-      fill: 'none',
-      stroke: '#aaaaaa',
-      strokeOpacity: 0.8,
-      strokeWidth: '0.1em'
-    }
-    const es = g.edges()
+  getLinks = (g, edgeMap) => {
 
+    const es = g.edges()
     const links = []
 
     es.forEach(e => {
+
+      let style = {
+        fill: 'none',
+        stroke: '#FFFFFF',
+        strokeOpacity: 0.1,
+        strokeWidth: 1
+      }
+
       const target = g.node(e.v)
       const source = g.node(e.w)
+
+      const eType = edgeMap[e.v+e.w]
+
+      if(eType === 'TREE') {
+        style = {
+          fill: 'none',
+          stroke: '#0099CC',
+          strokeOpacity: 0.7,
+          strokeWidth: 1
+        }
+      }
 
       links.push(
         <Link
@@ -146,7 +160,6 @@ class DAGViewer extends Component {
           }}
           style={style}
         />)
-
     })
 
     return links
