@@ -18,7 +18,7 @@ const style = {
 }
 const style2 = {
   width: width,
-  height: 1200,
+  height: 1900,
   background: 'black'
 }
 

@@ -8,7 +8,7 @@
 }
 
 svg {
-    background: #272729;
+    background: #FFFFFF;
 }
 
 .node circle {
@@ -28,7 +28,7 @@ svg {
 }
 
 text {
-    fill: #FFFFFF;
+    fill: #444444;
     font-weight: 400;
     font-size: 0.7em;
     font-family: "Helvetica Neue";

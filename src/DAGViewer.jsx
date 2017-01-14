@@ -37,7 +37,8 @@ class DAGViewer extends Component {
     g.setDefaultEdgeLabel(() => ({}))
 
     jsnodes.forEach(n => {
-      g.setNode(n.data.id, { label: n.data.name, type: n.data.type, width: 30, height: 30 });
+      console.log(n)
+      g.setNode(n.data.id, { label: n.data.name, type: n.data.type, width: 50, height: 50 });
 
     })
 
@@ -54,12 +55,15 @@ class DAGViewer extends Component {
     dagre.layout(g);
 
     g.nodes().forEach(v => {
+      console.log('NODE:')
+      console.log(v)
+
       const n = g.node(v)
       const x = n.x
       const y = n.y
 
-      g.node(v).x = x * 0.6
-      g.node(v).y = y * 2.3
+      g.node(v).x = x * 0.15
+      g.node(v).y = y * 1.3
     })
 
     const nodes = this.getNodes(g)
@@ -132,8 +136,8 @@ class DAGViewer extends Component {
 
       let style = {
         fill: 'none',
-        stroke: '#FFFFFF',
-        strokeOpacity: 0.1,
+        stroke: '#555555',
+        strokeOpacity: 0.4,
         strokeWidth: 1
       }
 
