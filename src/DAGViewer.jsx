@@ -62,8 +62,8 @@ class DAGViewer extends Component {
       const x = n.x
       const y = n.y
 
-      g.node(v).x = x * 0.15
-      g.node(v).y = y * 1.3
+      g.node(v).x = x * 0.3
+      g.node(v).y = y * 4.3
     })
 
     const nodes = this.getNodes(g)
@@ -216,6 +216,7 @@ DAGViewer.propTypes = {
 
   // Size of tree node
   nodeWidth: PropTypes.number
+
 }
 
 DAGViewer.defaultProps = {

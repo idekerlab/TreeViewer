@@ -163,6 +163,7 @@ class Node extends Component {
   getStyle = () => {
     return {
       textAnchor: this.getAnchor(),
+      fill: 'rgb(10,10,10)'
     }
   }
 
