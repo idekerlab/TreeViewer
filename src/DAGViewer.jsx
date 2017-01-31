@@ -38,7 +38,21 @@ class DAGViewer extends Component {
 
     jsnodes.forEach(n => {
       console.log(n)
-      g.setNode(n.data.id, { label: n.data.name, type: n.data.type, width: 50, height: 50 });
+
+
+      const keys = Object.keys(n.data)
+
+      const minimalData = {
+        label: n.data.name,
+        width: 50,
+        height: 50
+      }
+
+      const dataFields = keys.map(key => {
+        return minimalData[key] = n.data[key]
+      })
+
+      g.setNode(n.data.id, minimalData);
 
     })
 
@@ -93,8 +107,13 @@ class DAGViewer extends Component {
       const dType = node.type
       let isLeaf = false
 
+      let score = node.score
 
-      let nodeSize = 5
+      if(score === undefined || score === NaN) {
+        score = 1.0
+      }
+
+      let nodeSize = Math.log(score * 100) * 2 + 3
 
       let nodeType = 'node'
       if(dType === 'gene') {
