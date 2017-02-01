@@ -37,8 +37,8 @@ Link.defaultProps = {
 
   style: {
     fill: 'none',
-    stroke: '#777777',
-    strokeOpacity: 0.5,
+    stroke: 'green',
+    strokeOpacity: 0.9,
     strokeWidth: '0.1em'
   }
 };

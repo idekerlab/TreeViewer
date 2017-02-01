@@ -69,7 +69,9 @@ class Node extends Component {
       >
         <Shape
           size={this.props.nodeSize}
+          position={this.props.position}
           style={style}
+          shapeName={this.props.shapeName}
         />
 
         {textElement}
@@ -149,7 +151,7 @@ class Node extends Component {
       </text>,
       <text
         key={String(Math.random())}
-        dy={this.getY() + 12}
+        dy={this.getY() + 18}
         x={this.getX()}
         style={this.getStyle()}
       >
@@ -163,7 +165,7 @@ class Node extends Component {
   getStyle = () => {
     return {
       textAnchor: this.getAnchor(),
-      fill: 'rgb(10,10,10)'
+      fill: '#EFEFEF'
     }
   }
 

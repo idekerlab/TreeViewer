@@ -44,8 +44,8 @@ class DAGViewer extends Component {
 
       const minimalData = {
         label: n.data.name,
-        width: 50,
-        height: 50
+        width: 70,
+        height: 70
       }
 
       const dataFields = keys.map(key => {
@@ -76,8 +76,8 @@ class DAGViewer extends Component {
       const x = n.x
       const y = n.y
 
-      g.node(v).x = x * 0.3
-      g.node(v).y = y * 4.3
+      g.node(v).x = x * 2.5
+      g.node(v).y = y * 4
     })
 
     const nodes = this.getNodes(g)
@@ -98,8 +98,9 @@ class DAGViewer extends Component {
     vs.forEach(v => {
 
       const style = {
-        fill: '#0099CC',
-        strokeWidth: 0
+        fill: 'none',
+        strokeWidth: 3,
+        stroke: '#FFFFFF'
       }
 
       const node = g.node(v)
@@ -115,11 +116,16 @@ class DAGViewer extends Component {
 
       let nodeSize = Math.log(score * 100) * 2 + 3
 
+      let shapeName = 'neuron'
+
+
       let nodeType = 'node'
       if(dType === 'gene') {
         isLeaf = true
-        nodeSize = 3
-        style.fill = '#FFFFFF'
+        nodeSize = 13
+        shapeName='circle'
+        style.fill = 'orange'
+        style.stroke = 'none'
       } else if(dType === 'origin') {
 
         console.log('------------------------ !!!!!!!!!!!!! ORG!')
@@ -139,6 +145,7 @@ class DAGViewer extends Component {
           fontSize='2em'
           labelKey="name"
           shapeStyle={style}
+          shapeName={shapeName}
         />);
 
     })
@@ -155,8 +162,8 @@ class DAGViewer extends Component {
 
       let style = {
         fill: 'none',
-        stroke: '#555555',
-        strokeOpacity: 0.4,
+        stroke: '#FFFFFF',
+        strokeOpacity: 0.6,
         strokeWidth: 1
       }
 
