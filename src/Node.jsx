@@ -86,7 +86,7 @@ class Node extends Component {
   }
 
   getX = () => {
-    const disp = this.props.nodeSize + 5;
+    const disp = this.props.nodeSize + 10;
     if(this.props.isRoot) {
       return disp
     }
@@ -151,7 +151,7 @@ class Node extends Component {
       </text>,
       <text
         key={String(Math.random())}
-        dy={this.getY() + 18}
+        dy={this.getY() + 20}
         x={this.getX()}
         style={this.getStyle()}
       >
@@ -165,7 +165,7 @@ class Node extends Component {
   getStyle = () => {
     return {
       textAnchor: this.getAnchor(),
-      fill: '#EFEFEF'
+      fill: '#444444'
     }
   }
 

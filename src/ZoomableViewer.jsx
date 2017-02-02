@@ -61,7 +61,7 @@ class ZoomableViewer extends Component {
   componentDidMount() {
     const treeArea = d3Select.select('#' + this.state.rootTag)
     const zoom = d3Zoom.zoom(treeArea)
-      .scaleExtent([1 / 3, 10])
+      .scaleExtent([1 / 10, 100])
       .on('zoom', this.zoomed)
 
     // TODO: any better way to avoid selection?

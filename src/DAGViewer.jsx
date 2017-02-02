@@ -45,7 +45,7 @@ class DAGViewer extends Component {
       const minimalData = {
         label: n.data.name,
         width: 70,
-        height: 70
+        height: 50
       }
 
       const dataFields = keys.map(key => {
@@ -76,8 +76,8 @@ class DAGViewer extends Component {
       const x = n.x
       const y = n.y
 
-      g.node(v).x = x * 2.5
-      g.node(v).y = y * 4
+      g.node(v).x = x * 1.8
+      g.node(v).y = y * 3.2
     })
 
     const nodes = this.getNodes(g)
@@ -162,8 +162,8 @@ class DAGViewer extends Component {
 
       let style = {
         fill: 'none',
-        stroke: '#FFFFFF',
-        strokeOpacity: 0.6,
+        stroke: '#666666',
+        strokeOpacity: 0.5,
         strokeWidth: 1
       }
 

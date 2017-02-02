@@ -5,6 +5,13 @@ export const CIRCLE = 'circle'
 export const NEURON = 'neuron'
 
 
+import * as d3Scale from 'd3-scale'
+
+const colorMapper = d3Scale.scaleLinear()
+  .domain([0.0, 1.0])
+  .range(["#444444", "#FFFFFF"]);
+
+
 class Shape extends Component {
 
   // render() {
@@ -37,9 +44,9 @@ class Shape extends Component {
     }
 
     const borderStyle = {
-      fill: 'none',
-      stroke: '#EFEFEF',
-      strokeWidth: 1.0
+      fill: '#FFFFFF',
+      stroke: '#333333',
+      strokeWidth: 1
     }
 
     const pad = 20.0
@@ -49,25 +56,38 @@ class Shape extends Component {
     const max = 9
     const numNeurons = Math.floor( (Math.random() * ( ( max + 1 ) - min ) ) + min )
     const neurons = []
-
     for(let i = 0; i<numNeurons; i++) {
       neurons.push(Math.random())
     }
 
 
-    const r = 8
+    const r = 10
     const d = 2*r
 
-    const h = d * numNeurons + (pad/2.0 * (numNeurons-1)) + pad
+    const h = d * numNeurons + pad
+
+    console.log("h = " + h )
+
     const w = d + pad
     const dx = w
     const dy = h/2.0
 
-    let origin = (numNeurons/2) * d + d
+    console.log("Num neuron: " + numNeurons)
+    let isOdd = true
     if(numNeurons%2 === 0) {
-      origin = (numNeurons/2) * d + 2*d + pad/2
+      isOdd = false
     }
+    console.log(isOdd)
 
+    const half = Math.floor(numNeurons/2)
+    console.log(half)
+
+    let origin = 0
+    if(isOdd) {
+      origin = (half * d)  + d
+    } else {
+      origin = (half * d) + r
+    }
 
     return (
       <g id={'neuron' + Math.random()}>
@@ -88,7 +108,9 @@ class Shape extends Component {
 
   getNeurons = (neurons, r, origin, pad) => {
 
+
     const hDisp = -(r + pad/2)
+
     let start = -origin
     const dx = 2*r
     let i = 1
@@ -96,13 +118,18 @@ class Shape extends Component {
     return neurons.map(n => {
 
       i = i + 1
-      start = start + dx + pad/2
+      start = start + dx
+
+      const circleStyle = {
+        fill: d3Scale.interpolateCool(n),
+        stroke: 'none',
+      }
 
       return(
         <circle
           key={i}
-          r={r}
-          style={this.props.style}
+          r={r-3}
+          style={circleStyle}
           transform={"translate(" + hDisp + "," + start + ")"}
         />
       )
@@ -128,7 +155,7 @@ Shape.defaultProps = {
   style: {
     fill: 'none',
     stroke: 'green',
-    strokeWidth: 2
+    strokeWidth: 1
   },
   size: 10,
   shapeName: CIRCLE
