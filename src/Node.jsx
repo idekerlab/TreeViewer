@@ -190,7 +190,8 @@ Node.propTypes = {
   nodeType: PropTypes.string,
   position: PropTypes.object,
   nodeSize: PropTypes.number,
-  eventHandlers: PropTypes.object
+  eventHandlers: PropTypes.object,
+  showLabel: PropTypes.bool
 };
 
 Node.defaultProps = {
@@ -200,7 +201,8 @@ Node.defaultProps = {
   labelKey: 'name',
   nodeSize: 10,
   position: {x: 0, y: 0},
-  eventHandlers: DEF_EVENT_HANDLERS
+  eventHandlers: DEF_EVENT_HANDLERS,
+  showLabel: true
 };
 
 export default Node

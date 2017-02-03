@@ -44,8 +44,8 @@ class DAGViewer extends Component {
 
       const minimalData = {
         label: n.data.name,
-        width: 70,
-        height: 50
+        width: 60,
+        height: 350
       }
 
       const dataFields = keys.map(key => {
@@ -76,8 +76,8 @@ class DAGViewer extends Component {
       const x = n.x
       const y = n.y
 
-      g.node(v).x = x * 1.8
-      g.node(v).y = y * 3.2
+      g.node(v).x = x
+      g.node(v).y = y
     })
 
     const nodes = this.getNodes(g)
@@ -97,40 +97,62 @@ class DAGViewer extends Component {
 
     vs.forEach(v => {
 
-      const style = {
-        fill: 'none',
-        strokeWidth: 3,
-        stroke: '#FFFFFF'
-      }
-
       const node = g.node(v)
 
       const dType = node.type
+      let name = node.label
+
       let isLeaf = false
 
       let score = node.score
+      let phenotype = node.phenotype
 
       if(score === undefined || score === NaN) {
-        score = 1.0
+        score = 0
       }
 
-      let nodeSize = Math.log(score * 100) * 2 + 3
+      let nodeSize = Math.log(score * 1000 + 1) * 10 + 5
 
-      let shapeName = 'neuron'
+      let fillColor = '#26C6DA'
+
+      if(score === -1) {
+        nodeSize = 5
+        fillColor = 'rgba(200, 200, 200, 0.5)'
+      }
+
+
+      let shapeName = 'circle'
+
+      if(this.props.expand) {
+        shapeName = 'neuron'
+      }
 
 
       let nodeType = 'node'
+
+      const style = {
+        fill: fillColor,
+        stroke: 'none',
+        shapeName: shapeName
+      }
+
       if(dType === 'gene') {
         isLeaf = true
-        nodeSize = 13
+        nodeSize = 10
         shapeName='circle'
         style.fill = 'orange'
         style.stroke = 'none'
-      } else if(dType === 'origin') {
+      } else if(name === 'GO:00SUPER') {
 
         console.log('------------------------ !!!!!!!!!!!!! ORG!')
-        nodeSize = 20
+        console.log(node)
+        nodeSize = Math.log(phenotype * 1000 + 2) * 30 + 5
+        // nodeSize=60
         nodeType = 'origin'
+        shapeName='circle'
+        style.fill = '#f44336'
+        style.stroke = 'none'
+        name = 'Growth Rate = ' + phenotype.toString()
       }
 
       nodes.push(
@@ -138,7 +160,7 @@ class DAGViewer extends Component {
           key={Math.random()}
           nodeType={nodeType}
           id={node.label}
-          data={{name: node.label}}
+          data={{name: name}}
           position={{x: node.x, y: node.y}}
           isLeaf={isLeaf}
           nodeSize={nodeSize}
@@ -237,6 +259,9 @@ DAGViewer.propTypes = {
   // DAG data in CX
   data: PropTypes.object,
 
+  // Style data for nodes and edges
+  dagStyle: PropTypes.object,
+
   // Key property name for node label
   label: PropTypes.string,
 
@@ -251,6 +276,9 @@ DAGViewer.defaultProps = {
     width: 1500,
     height: 1000,
     background: '#FFFFFF'
+  },
+  dagStyle: {
+
   },
   label: 'name',
   nodeSize: 10
