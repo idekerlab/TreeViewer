@@ -37,11 +37,7 @@ class DAGViewer extends Component {
     g.setDefaultEdgeLabel(() => ({}))
 
     jsnodes.forEach(n => {
-      console.log(n)
-
-
       const keys = Object.keys(n.data)
-
       const minimalData = {
         label: n.data.name,
         width: 60,
@@ -69,9 +65,6 @@ class DAGViewer extends Component {
     dagre.layout(g);
 
     g.nodes().forEach(v => {
-      console.log('NODE:')
-      console.log(v)
-
       const n = g.node(v)
       const x = n.x
       const y = n.y
@@ -146,13 +139,13 @@ class DAGViewer extends Component {
 
         console.log('------------------------ !!!!!!!!!!!!! ORG!')
         console.log(node)
-        nodeSize = Math.log(phenotype * 1000 + 2) * 30 + 5
+        nodeSize = Math.log(phenotype * 1000 + 2) * 40 + 5
         // nodeSize=60
         nodeType = 'origin'
         shapeName='circle'
         style.fill = '#f44336'
         style.stroke = 'none'
-        name = 'Growth Rate = ' + phenotype.toString()
+        name = 'Growth Rate = ' + (phenotype.toFixed(6)).toString()
       }
 
       nodes.push(
@@ -168,6 +161,7 @@ class DAGViewer extends Component {
           labelKey="name"
           shapeStyle={style}
           shapeName={shapeName}
+          nodeSelected={this.props.nodeSelected}
         />);
 
     })
@@ -184,8 +178,8 @@ class DAGViewer extends Component {
 
       let style = {
         fill: 'none',
-        stroke: '#666666',
-        strokeOpacity: 0.5,
+        stroke: '#777777',
+        strokeOpacity: 0.4,
         strokeWidth: 1
       }
 
@@ -266,7 +260,9 @@ DAGViewer.propTypes = {
   label: PropTypes.string,
 
   // Size of tree node
-  nodeWidth: PropTypes.number
+  nodeWidth: PropTypes.number,
+
+  nodeSelected: PropTypes.func
 
 }
 
@@ -281,7 +277,12 @@ DAGViewer.defaultProps = {
 
   },
   label: 'name',
-  nodeSize: 10
+  nodeSize: 10,
+
+  nodeSelected: function(selectedNode) {
+    console.log('# Node Selected: ')
+    console.log(selectedNode)
+  }
 }
 
 export default DAGViewer

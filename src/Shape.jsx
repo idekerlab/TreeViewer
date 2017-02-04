@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 
+import Ellipse from './Ellipse'
 
 export const CIRCLE = 'circle'
 export const NEURON = 'neuron'
@@ -14,20 +15,9 @@ const colorMapper = d3Scale.scaleLinear()
 
 class Shape extends Component {
 
-  // render() {
-  //   return (
-  //     <circle
-  //       r={this.props.size}
-  //       style={this.props.style}
-  //     />
-  //   )
-  // }
 
   render() {
-    console.log('################## SAHPE')
-
     const shapeName = this.props.shapeName
-
     return this.getShape(shapeName)
   }
 
@@ -35,9 +25,11 @@ class Shape extends Component {
   getShape = shapeName => {
 
     if(shapeName === CIRCLE) {
+      console.log('!!!! elip')
       return (
-        <circle
-          r={this.props.size}
+        <Ellipse
+          width={this.props.size * 2}
+          height={this.props.size}
           style={this.props.style}
         />
       )
