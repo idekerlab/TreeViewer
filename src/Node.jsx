@@ -24,9 +24,8 @@ class Node extends Component {
   onClick = (event) => {
     console.log("----------- CLICK!!!!!!!!! --------------")
     this.setState({selected: !this.state.selected})
-    this.props.nodeSelected(this.props.data)
 
-    this.props.eventHandlers.nodeSelected(this.props.data)
+    this.props.eventHandlers.nodeSelected(this.props.id)
   }
 
   handleMouseEnter = (event) => {
@@ -106,7 +105,12 @@ class Node extends Component {
       text = this.props.id
     }
 
-    if(text.length < 35) {
+    const areaWidth = this.props.areaWidth
+    const fontSize = this.props.labelFontSize
+
+    const maxCharLength = Math.floor((areaWidth - 10) / fontSize)
+
+    if(text.length < maxCharLength) {
       return (
         [
           <text
@@ -127,14 +131,14 @@ class Node extends Component {
 
     let i = 0
     for(i; i<words.length; i++) {
-      if(line1.length < 30) {
+      if(line1.length < maxCharLength) {
         line1 = line1 + words[i] + ' ';
       } else {
         line2 = line2 + words[i] + ' '
       }
 
-      if(line2.length >= 30) {
-        if(words.length >i) {
+      if(line2.length >= maxCharLength) {
+        if(words.length > i) {
           line2 = line2 + '...'
         }
         break;
@@ -152,7 +156,7 @@ class Node extends Component {
       </text>,
       <text
         key={String(Math.random())}
-        dy={this.getY() + 20}
+        dy={this.getY() + this.props.labelFontSize * 1.2}
         x={this.getX()}
         style={this.getStyle()}
       >
@@ -166,7 +170,10 @@ class Node extends Component {
   getStyle = () => {
     return {
       textAnchor: this.getAnchor(),
-      fill: '#444444'
+      fill: '#333333',
+      fontFamily: "SansSerif",
+      fontSize: this.props.labelFontSize,
+      fontWeight: 700
     }
   }
 
@@ -192,7 +199,10 @@ Node.propTypes = {
   position: PropTypes.object,
   nodeSize: PropTypes.number,
   eventHandlers: PropTypes.object,
-  showLabel: PropTypes.bool
+  showLabel: PropTypes.bool,
+  areaWidth: PropTypes.number,
+  areaHeight: PropTypes.number,
+  labelFontSize: PropTypes.number
 };
 
 Node.defaultProps = {
@@ -203,7 +213,8 @@ Node.defaultProps = {
   nodeSize: 10,
   position: {x: 0, y: 0},
   eventHandlers: DEF_EVENT_HANDLERS,
-  showLabel: true
+  showLabel: true,
+  labelFontSize: 11
 };
 
 export default Node

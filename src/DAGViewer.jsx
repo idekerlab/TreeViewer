@@ -40,8 +40,8 @@ class DAGViewer extends Component {
       const keys = Object.keys(n.data)
       const minimalData = {
         label: n.data.name,
-        width: 60,
-        height: 350
+        width: this.props.areaHeight,
+        height: this.props.areaWidth
       }
 
       const dataFields = keys.map(key => {
@@ -104,14 +104,18 @@ class DAGViewer extends Component {
         score = 0
       }
 
-      let nodeSize = Math.log(score * 1000 + 1) * 10 + 5
+      let nodeSize = 10
+      // let nodeSize = Math.log(score * 1000 + 1) * 10 + 5
+
+
+      let labelFontSize = 11
 
       let fillColor = '#26C6DA'
 
-      if(score === -1) {
-        nodeSize = 5
-        fillColor = 'rgba(200, 200, 200, 0.5)'
-      }
+      // if(score === -1) {
+      //   nodeSize = 5
+      //   fillColor = 'rgba(200, 200, 200, 0.5)'
+      // }
 
 
       let shapeName = 'circle'
@@ -135,6 +139,7 @@ class DAGViewer extends Component {
         shapeName='circle'
         style.fill = 'orange'
         style.stroke = 'none'
+        labelFontSize = 25
       } else if(name === 'GO:00SUPER') {
 
         console.log('------------------------ !!!!!!!!!!!!! ORG!')
@@ -145,14 +150,15 @@ class DAGViewer extends Component {
         shapeName='circle'
         style.fill = '#f44336'
         style.stroke = 'none'
-        name = 'Growth Rate = ' + (phenotype.toFixed(6)).toString()
+        labelFontSize = 15
+        name = 'Growth Rate = ' + (Number(phenotype.toFixed(6)).toExponential()).toString()
       }
 
       nodes.push(
         <Node
           key={Math.random()}
           nodeType={nodeType}
-          id={node.label}
+          id={node.id}
           data={{name: name}}
           position={{x: node.x, y: node.y}}
           isLeaf={isLeaf}
@@ -161,7 +167,16 @@ class DAGViewer extends Component {
           labelKey="name"
           shapeStyle={style}
           shapeName={shapeName}
-          nodeSelected={this.props.nodeSelected}
+
+          eventHandlers={
+            {
+              nodeSelected: this.props.nodeSelected
+            }
+          }
+          areaWidth={this.props.areaWidth}
+          areaHeight={this.props.areaHeight}
+
+          labelFontSize={labelFontSize}
         />);
 
     })
@@ -259,10 +274,12 @@ DAGViewer.propTypes = {
   // Key property name for node label
   label: PropTypes.string,
 
-  // Size of tree node
-  nodeWidth: PropTypes.number,
 
-  nodeSelected: PropTypes.func
+  nodeSelected: PropTypes.func,
+
+  // Size of tree node
+  areaWidth: PropTypes.number,
+  areaHeight: PropTypes.number
 
 }
 
@@ -282,7 +299,12 @@ DAGViewer.defaultProps = {
   nodeSelected: function(selectedNode) {
     console.log('# Node Selected: ')
     console.log(selectedNode)
-  }
+  },
+
+  areaWidth: 130,
+  areaHeight: 15
+
+
 }
 
 export default DAGViewer

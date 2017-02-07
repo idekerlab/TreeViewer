@@ -25,10 +25,9 @@ class Shape extends Component {
   getShape = shapeName => {
 
     if(shapeName === CIRCLE) {
-      console.log('!!!! elip')
       return (
         <Ellipse
-          width={this.props.size * 2}
+          width={this.props.size}
           height={this.props.size}
           style={this.props.style}
         />
