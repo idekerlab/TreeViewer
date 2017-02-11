@@ -170,7 +170,7 @@ class Node extends Component {
   getStyle = () => {
     return {
       textAnchor: this.getAnchor(),
-      fill: '#333333',
+      fill: this.props.labelColor,
       fontFamily: "SansSerif",
       fontSize: this.props.labelFontSize,
       fontWeight: 700
@@ -202,7 +202,8 @@ Node.propTypes = {
   showLabel: PropTypes.bool,
   areaWidth: PropTypes.number,
   areaHeight: PropTypes.number,
-  labelFontSize: PropTypes.number
+  labelFontSize: PropTypes.number,
+  labelColor: PropTypes.string
 };
 
 Node.defaultProps = {
@@ -214,7 +215,9 @@ Node.defaultProps = {
   position: {x: 0, y: 0},
   eventHandlers: DEF_EVENT_HANDLERS,
   showLabel: true,
-  labelFontSize: 11
+  labelFontSize: 11,
+  labelColor: '#333333'
+
 };
 
 export default Node

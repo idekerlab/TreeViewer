@@ -84,7 +84,6 @@ class DAGViewer extends Component {
 
 
   getNodes = g => {
-
     const vs = g.nodes()
     const nodes = []
 
@@ -104,19 +103,20 @@ class DAGViewer extends Component {
         score = 0
       }
 
-      let nodeSize = 10
-      // let nodeSize = Math.log(score * 1000 + 1) * 10 + 5
+      let nodeSize = Math.log(score * 1000 + 1) * 5 + 5
+      // let nodeSize = 10
 
-
-      let labelFontSize = 11
+      let labelFontSize = 8
 
       let fillColor = '#26C6DA'
+      let labelColor = '#333333'
 
-      // if(score === -1) {
-      //   nodeSize = 5
-      //   fillColor = 'rgba(200, 200, 200, 0.5)'
-      // }
-
+      if(score === -1) {
+        nodeSize = 2
+        fillColor = '#CCCCCC'
+        labelFontSize = 1
+        labelColor = '#BBBBBB'
+      }
 
       let shapeName = 'circle'
 
@@ -177,6 +177,7 @@ class DAGViewer extends Component {
           areaHeight={this.props.areaHeight}
 
           labelFontSize={labelFontSize}
+          labelColor={labelColor}
         />);
 
     })
