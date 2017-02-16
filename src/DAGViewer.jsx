@@ -64,12 +64,19 @@ class DAGViewer extends Component {
     // Layout using the library
     dagre.layout(g);
 
+
+    let scaling = 1.0
+
+    if(this.props.expand) {
+      scaling = 5.0
+    }
+
     g.nodes().forEach(v => {
       const n = g.node(v)
       const x = n.x
       const y = n.y
 
-      g.node(v).x = x
+      g.node(v).x = x * scaling
       g.node(v).y = y
     })
 
@@ -98,6 +105,7 @@ class DAGViewer extends Component {
 
       let score = node.score
       let phenotype = node.phenotype
+      let neurons = node.neurons
 
       if(score === undefined || score === NaN) {
         score = 0
@@ -140,6 +148,8 @@ class DAGViewer extends Component {
         style.fill = 'orange'
         style.stroke = 'none'
         labelFontSize = 25
+        neurons = []
+
       } else if(name === 'GO:00SUPER') {
 
         console.log('------------------------ !!!!!!!!!!!!! ORG!')
@@ -159,7 +169,10 @@ class DAGViewer extends Component {
           key={Math.random()}
           nodeType={nodeType}
           id={node.id}
-          data={{name: name}}
+          data={{
+            name: name,
+            neurons: neurons
+          }}
           position={{x: node.x, y: node.y}}
           isLeaf={isLeaf}
           nodeSize={nodeSize}
@@ -178,6 +191,8 @@ class DAGViewer extends Component {
 
           labelFontSize={labelFontSize}
           labelColor={labelColor}
+
+          expand={this.props.expand}
         />);
 
     })

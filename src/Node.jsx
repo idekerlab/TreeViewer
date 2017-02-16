@@ -28,21 +28,6 @@ class Node extends Component {
     this.props.eventHandlers.nodeSelected(this.props.id)
   }
 
-  handleMouseEnter = (event) => {
-    console.log('Enter')
-    this.setState({showTooltip: true})
-
-    setTimeout(() => {
-      if(this.state.showTooltip) {
-        console.log("------Tooltip --------")
-      }
-    }, 1000)
-  }
-
-  handleMouseLeave = (event) => {
-    console.log('Leave')
-    this.setState({showTooltip: false})
-  }
 
   render() {
 
@@ -59,19 +44,23 @@ class Node extends Component {
       style.fill = this.props.shapeStyle.fill
     }
 
+    let shapeName = this.props.shapeName
+    if(this.state.selected) {
+      shapeName = 'neuron'
+    }
+
     return (
       <g
         className={this.props.nodeType}
         transform={this.getTransform(this.props.position)}
         onClick={this.onClick}
-        onMouseEnter={this.handleMouseEnter}
-        onMouseLeave={this.handleMouseLeave}
       >
         <Shape
           size={this.props.nodeSize}
           position={this.props.position}
           style={style}
-          shapeName={this.props.shapeName}
+          shapeName={shapeName}
+          data={this.props.data}
         />
 
         {textElement}
