@@ -112,7 +112,9 @@ class DAGViewer extends Component {
       }
 
       let nodeSize = Math.log(score * 1000 + 1) * 5 + 5
-      // let nodeSize = 10
+      if(nodeSize <= 0.0 || nodeSize === NaN) {
+        nodeSize = 5
+      }
 
       let labelFontSize = 8
 
@@ -152,16 +154,23 @@ class DAGViewer extends Component {
 
       } else if(name === 'GO:00SUPER') {
 
-        console.log('------------------------ !!!!!!!!!!!!! ORG!')
         console.log(node)
         nodeSize = Math.log(phenotype * 1000 + 2) * 40 + 5
-        // nodeSize=60
+
+        if(nodeSize === undefined || nodeSize <= 0.0 || nodeSize === NaN) {
+          nodeSize = 5
+        }
         nodeType = 'origin'
         shapeName='circle'
         style.fill = '#f44336'
         style.stroke = 'none'
         labelFontSize = 15
-        name = 'Growth Rate = ' + (Number(phenotype.toFixed(6)).toExponential()).toString()
+
+        if(phenotype === -1) {
+          name = 'N/A'
+        } else {
+          name = 'Growth Rate = ' + (Number(phenotype.toFixed(6)).toExponential()).toString()
+        }
       }
 
       nodes.push(
