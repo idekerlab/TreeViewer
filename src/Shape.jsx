@@ -7,7 +7,6 @@ export const CIRCLE = 'circle'
 export const NEURON = 'neuron'
 
 
-
 class Shape extends Component {
 
 
