@@ -50,7 +50,7 @@ class Node extends Component {
         onClick={this.onClick}
       >
         <Shape
-          size={10}
+          size={this.props.nodeSize}
           position={this.props.position}
           style={style}
           shapeName={shapeName}
@@ -194,7 +194,7 @@ Node.defaultProps = {
   isLeaf: false,
   isRoot: false,
   labelKey: 'name',
-  nodeSize: 10,
+  nodeSize: 25,
   position: {x: 0, y: 0},
   eventHandlers: DEF_EVENT_HANDLERS,
   showLabel: true,

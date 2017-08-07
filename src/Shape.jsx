@@ -1,35 +1,19 @@
 import React, {Component, PropTypes} from 'react'
-
 import Ellipse from './Ellipse'
-import Neuron from './Neuron'
 
 export const CIRCLE = 'circle'
-
 
 
 class Shape extends Component {
 
   render() {
-    const shapeName = this.props.shapeName
-
-    if(shapeName === CIRCLE) {
-      return (
-        <Ellipse
-          width={this.props.size}
-          height={this.props.size}
-          style={this.props.style}
-        />
-      )
-    } else {
-      return (
-        <Neuron
-          data={this.props.data}
-          size={10.0}
-        />
-      )
-
-    }
-
+    return (
+      <Ellipse
+        width={this.props.size}
+        height={this.props.size}
+        style={this.props.style}
+      />
+    )
   }
 }
 
@@ -44,7 +28,7 @@ Shape.defaultProps = {
     stroke: 'green',
     strokeWidth: 1
   },
-  size: 10,
+  size: 25,
   shapeName: CIRCLE
 };
 

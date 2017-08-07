@@ -109,12 +109,7 @@ class DAGViewer extends Component {
         score = 0
       }
 
-      // let nodeSize = Math.log(score * 1000 + 1) * 5 + 5
-      // if(nodeSize <= 0.0 || nodeSize === NaN) {
-      //   nodeSize = 5
-      // }
-
-      let nodeSize = 10
+      let nodeSize = 25
       let labelFontSize = 8
 
       let fillColor = '#26C6DA'
@@ -133,7 +128,6 @@ class DAGViewer extends Component {
         shapeName = 'neuron'
       }
 
-
       let nodeType = 'node'
 
       const style = {
@@ -144,7 +138,6 @@ class DAGViewer extends Component {
 
       if(dType === 'gene') {
         isLeaf = true
-        nodeSize = 10
         shapeName='circle'
         style.fill = 'orange'
         style.stroke = 'none'
@@ -153,12 +146,6 @@ class DAGViewer extends Component {
 
       } else if(name === 'GO:00SUPER') {
 
-        console.log(node)
-        nodeSize = 10
-
-        if(nodeSize === undefined || nodeSize <= 0.0 || nodeSize === NaN) {
-          nodeSize = 5
-        }
         nodeType = 'origin'
         shapeName='circle'
         style.fill = '#f44336'

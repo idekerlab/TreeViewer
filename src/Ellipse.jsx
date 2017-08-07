@@ -1,24 +1,14 @@
-import React, {Component, PropTypes} from 'react'
+import React, {PropTypes} from 'react'
 
 export const ELLIPSE = 'ellipse'
 
 
 const Ellipse = props => {
 
-  let w = props.width
-  let h = props.height
-  if(w <= 0.0) {
-    w = 5
-  }
-
-  if(h <= 0.0) {
-    h = 5
-  }
-
   return(
     <ellipse
-      rx={w}
-      ry={h}
+      rx={props.width}
+      ry={props.height}
       style={props.style}
     />
   )
@@ -40,8 +30,8 @@ Ellipse.defaultProps = {
     strokeWidth: 1
   },
 
-  width: 10,
-  height: 10
+  width: 35,
+  height: 35
 }
 
 
