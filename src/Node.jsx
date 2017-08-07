@@ -24,7 +24,6 @@ class Node extends Component {
   onClick = (event) => {
     console.log("----------- CLICK!!!!!!!!! --------------")
     this.setState({selected: !this.state.selected})
-
     this.props.eventHandlers.nodeSelected(this.props.id)
   }
 
@@ -45,9 +44,6 @@ class Node extends Component {
     }
 
     let shapeName = this.props.shapeName
-    if(this.state.selected) {
-      shapeName = 'neuron'
-    }
 
     return (
       <g
