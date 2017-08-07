@@ -26,8 +26,6 @@ class DAGViewer extends Component {
 
   createDag = () => {
 
-    console.log("Generating DAG 2")
-
     const jsnodes = this.props.data.elements.nodes
     const jsedges = this.props.data.elements.edges
 
@@ -111,11 +109,12 @@ class DAGViewer extends Component {
         score = 0
       }
 
-      let nodeSize = Math.log(score * 1000 + 1) * 5 + 5
-      if(nodeSize <= 0.0 || nodeSize === NaN) {
-        nodeSize = 5
-      }
+      // let nodeSize = Math.log(score * 1000 + 1) * 5 + 5
+      // if(nodeSize <= 0.0 || nodeSize === NaN) {
+      //   nodeSize = 5
+      // }
 
+      let nodeSize = 10
       let labelFontSize = 8
 
       let fillColor = '#26C6DA'
@@ -155,7 +154,7 @@ class DAGViewer extends Component {
       } else if(name === 'GO:00SUPER') {
 
         console.log(node)
-        nodeSize = Math.log(phenotype * 1000 + 2) * 40 + 5
+        nodeSize = 10
 
         if(nodeSize === undefined || nodeSize <= 0.0 || nodeSize === NaN) {
           nodeSize = 5

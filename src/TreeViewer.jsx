@@ -124,7 +124,7 @@ class TreeViewer extends Component {
             data={childNode.data}
             isLeaf={isLeaf}
             position={{x: childNode.x, y: childNode.y}}
-            nodeSize={this.getSize(childNode)}
+            nodeSize={10}
             fontSize='1em'
             labelKey={this.props.label}
             shapeStyle={this.getShapeStyle(childNode)}

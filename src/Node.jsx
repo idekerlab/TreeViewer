@@ -32,8 +32,6 @@ class Node extends Component {
   render() {
 
     const textElement = this.getTextElement(this.props.data)
-
-
     const style = Object.assign({}, this.props.shapeStyle)
 
     if(this.state.selected) {
@@ -45,9 +43,6 @@ class Node extends Component {
     }
 
     let shapeName = this.props.shapeName
-    if(this.state.selected) {
-      shapeName = 'neuron'
-    }
 
     return (
       <g
@@ -56,7 +51,7 @@ class Node extends Component {
         onClick={this.onClick}
       >
         <Shape
-          size={this.props.nodeSize}
+          size={10}
           position={this.props.position}
           style={style}
           shapeName={shapeName}

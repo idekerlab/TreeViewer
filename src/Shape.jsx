@@ -4,12 +4,10 @@ import Ellipse from './Ellipse'
 import Neuron from './Neuron'
 
 export const CIRCLE = 'circle'
-export const NEURON = 'neuron'
 
 
 
 class Shape extends Component {
-
 
   render() {
     const shapeName = this.props.shapeName
