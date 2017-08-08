@@ -4,6 +4,12 @@ import Link from './Link'
 import Node from './Node'
 
 import * as dagre from 'dagre'
+import * as d3Scale from 'd3-scale'
+
+const colorMapper = d3Scale.scaleLinear()
+  .domain([-1, 0, 1])
+  .range(['red', 'white', 'blue'])
+
 
 import ZoomableViewer from './ZoomableViewer'
 
@@ -112,7 +118,7 @@ class DAGViewer extends Component {
       let nodeSize = 25
       let labelFontSize = 8
 
-      let fillColor = '#26C6DA'
+      let fillColor = colorMapper(score)
       let labelColor = '#333333'
 
       if(score === -1) {
