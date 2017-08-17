@@ -149,7 +149,8 @@ class DAGViewer extends Component {
 
         nodeType = 'origin'
         shapeName = 'circle'
-        style.stroke = 'none'
+        style.stroke = '#AAAAAA'
+        style.strokeWidth = 2
         labelFontSize = 15
         name = 'Growth Rate = ' + phenotype
       }
