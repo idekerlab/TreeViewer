@@ -2,13 +2,14 @@ import React, {Component, PropTypes} from 'react'
 
 import Link from './Link'
 import Node from './Node'
+import ArrowHead from './ArrowHead'
 
 import * as dagre from 'dagre'
 import * as d3Scale from 'd3-scale'
 
 const colorMapper = d3Scale.scaleLinear()
   .domain([-1, 0, 1])
-  .range(['red', 'white', 'blue'])
+  .range(['#3C54A5', '#FFFFFF', '#ED1F42'])
 
 
 import ZoomableViewer from './ZoomableViewer'
@@ -25,7 +26,7 @@ class DAGViewer extends Component {
 
     this.state = {
       dagNodes: [],
-      dagEdges: [],
+      dagLinks: [],
     }
   }
 
@@ -60,7 +61,7 @@ class DAGViewer extends Component {
 
     jsedges.forEach(e => {
       g.setEdge(e.data.source, e.data.target);
-      edgeMap[e.data.source+e.data.target] = e.data.in_tree
+      edgeMap[e.data.source + e.data.target] = e.data.in_tree
     })
 
     console.log(edgeMap)
@@ -69,18 +70,12 @@ class DAGViewer extends Component {
     dagre.layout(g);
 
 
-    let scaling = 1.0
-
-    if(this.props.expand) {
-      scaling = 5.0
-    }
-
     g.nodes().forEach(v => {
       const n = g.node(v)
       const x = n.x
       const y = n.y
 
-      g.node(v).x = x * scaling
+      g.node(v).x = x * 2.5
       g.node(v).y = y
     })
 
@@ -111,7 +106,7 @@ class DAGViewer extends Component {
       let phenotype = node.phenotype
       let neurons = node.neurons
 
-      if(score === undefined || score === NaN) {
+      if (score === undefined || score === NaN) {
         score = 0
       }
 
@@ -121,16 +116,9 @@ class DAGViewer extends Component {
       let fillColor = colorMapper(score)
       let labelColor = '#333333'
 
-      if(score === -1) {
-        nodeSize = 2
-        fillColor = '#CCCCCC'
-        labelFontSize = 1
-        labelColor = '#BBBBBB'
-      }
-
       let shapeName = 'circle'
 
-      if(this.props.expand) {
+      if (this.props.expand) {
         shapeName = 'neuron'
       }
 
@@ -142,23 +130,30 @@ class DAGViewer extends Component {
         shapeName: shapeName
       }
 
-      if(dType === 'gene') {
+      if (dType === 'gene') {
         isLeaf = true
-        shapeName='circle'
-        style.fill = 'orange'
+        shapeName = 'circle'
+        style.fill = '#1E196A'
         style.stroke = 'none'
         labelFontSize = 25
-        neurons = []
 
-      } else if(name === 'GO:00SUPER') {
+      } else if (name === 'other paths') {
+          shapeName = 'circle'
+          style.fill = '#FFFFFF'
+          style.stroke = '#AAAAAA'
+          labelFontSize = 18
+          style.strokeWidth = 2
+          labelColor = '#777777'
+
+      } else if (name === 'GO:00SUPER') {
 
         nodeType = 'origin'
-        shapeName='circle'
+        shapeName = 'circle'
         style.fill = '#f44336'
         style.stroke = 'none'
         labelFontSize = 15
 
-        if(phenotype === -1) {
+        if (phenotype === -1) {
           name = 'N/A'
         } else {
           name = 'Growth Rate = ' + (Number(phenotype.toFixed(6)).toExponential()).toString()
@@ -211,16 +206,23 @@ class DAGViewer extends Component {
       let style = {
         fill: 'none',
         stroke: '#777777',
-        strokeOpacity: 0.4,
-        strokeWidth: 1
+        strokeOpacity: 0.9,
+        strokeWidth: 3,
+        markerMid: 'url(#markerArrow)',
+
       }
 
       const target = g.node(e.v)
       const source = g.node(e.w)
 
-      const eType = edgeMap[e.v+e.w]
+      if(target.label === 'other paths' || source.label === 'other paths') {
+        style.strokeDasharray = '5, 5'
+        style.strokeWidth = 2
+      }
 
-      if(eType === 'TREE') {
+      const eType = edgeMap[e.v + e.w]
+
+      if (eType === 'TREE') {
         style = {
           fill: 'none',
           stroke: '#0099CC',
@@ -244,7 +246,6 @@ class DAGViewer extends Component {
   }
 
 
-
   /**
    * Pre-render tree using D3
    */
@@ -253,7 +254,7 @@ class DAGViewer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.data !== this.props.data) {
+    if (nextProps.data !== this.props.data) {
       console.log("Updating tree--------------")
       this.createDag()
     }
@@ -262,15 +263,17 @@ class DAGViewer extends Component {
 
   render() {
 
-    console.log("{{{{{{{{{{{{{{{{{{{{ Rendering DAG Wrapper }}}}}}}}}}}}}}}}}}}}}}}}}}}}}")
+    console.log("{{{{{{{{{{{{{{{{{{{{ Rendering DAG Wrapper3 }}}}}}}}}}}}}}}}}}}}}}}}}}}}}")
+    console.log(this.props)
+    console.log(this.state)
 
 
     return (
       <ZoomableViewer
         style={this.props.style}
       >
-          {this.state.dagLinks}
-          {this.state.dagNodes}
+        {this.state.dagLinks}
+        {this.state.dagNodes}
       </ZoomableViewer>
     )
   }
@@ -307,13 +310,11 @@ DAGViewer.defaultProps = {
     height: 1000,
     background: '#FFFFFF'
   },
-  dagStyle: {
-
-  },
+  dagStyle: {},
   label: 'name',
   nodeSize: 10,
 
-  nodeSelected: function(selectedNode) {
+  nodeSelected: function (selectedNode) {
     console.log('# Node Selected: ')
     console.log(selectedNode)
   },

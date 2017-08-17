@@ -39,7 +39,8 @@ Link.defaultProps = {
     fill: 'none',
     stroke: 'green',
     strokeOpacity: 0.9,
-    strokeWidth: '0.1em'
+    strokeWidth: '2.6em',
+    markerEnd: 'url(#markerArrow)'
   }
 };
 

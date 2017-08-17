@@ -4,6 +4,8 @@ import * as d3Select from 'd3-selection'
 import * as d3Zoom from 'd3-zoom'
 import shortid from 'shortid'
 
+import ArrowHead from './ArrowHead'
+
 
 class ZoomableViewer extends Component {
 
@@ -21,7 +23,7 @@ class ZoomableViewer extends Component {
 
   render() {
 
-    console.log("{{{{{{{{{{{{{{{{{{{{ Rendering BASE }}}}}}}}}}}}}}}}}}}}}}}}}}}}}")
+    console.log("{{{{{{{{{{{{{{{{{{{{ Rendering BASE4 }}}}}}}}}}}}}}}}}}}}}}}}}}}}}")
 
     const areaStyle = {
       fill: 'none',
@@ -33,6 +35,12 @@ class ZoomableViewer extends Component {
         width={this.props.style.width}
         height={this.props.style.height}
       >
+        <defs>
+          <ArrowHead
+            arrowColor={'#777777'}
+          />
+        </defs>
+
         <rect
           id={this.state.zoomAreaTag}
           width={this.props.style.width}
@@ -40,7 +48,6 @@ class ZoomableViewer extends Component {
           style={areaStyle}
         >
         </rect>
-
 
         <g
           id={this.state.rootTag}
