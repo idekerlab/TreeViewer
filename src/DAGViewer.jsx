@@ -149,15 +149,9 @@ class DAGViewer extends Component {
 
         nodeType = 'origin'
         shapeName = 'circle'
-        style.fill = '#f44336'
         style.stroke = 'none'
         labelFontSize = 15
-
-        if (phenotype === -1) {
-          name = 'N/A'
-        } else {
-          name = 'Growth Rate = ' + (Number(phenotype.toFixed(6)).toExponential()).toString()
-        }
+        name = 'Growth Rate = ' + phenotype
       }
 
       nodes.push(
