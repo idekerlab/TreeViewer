@@ -23,8 +23,6 @@ class ZoomableViewer extends Component {
 
   render() {
 
-    console.log("{{{{{{{{{{{{{{{{{{{{ Rendering BASE4 }}}}}}}}}}}}}}}}}}}}}}}}}}}}}")
-
     const areaStyle = {
       fill: 'none',
       pointerEvents: 'all'
@@ -76,9 +74,27 @@ class ZoomableViewer extends Component {
       .select('#' + this.state.zoomAreaTag)
       .call(zoom)
 
-    // Move to initial location
+    const fullW = this.props.style.width
+    const fullH = this.props.style.height
+
+    // Hmm... how can I avoid select?
+    const bounds = treeArea.node().getBBox()
+    const width = bounds.width
+    const height = bounds.height
+    const midX = bounds.x + width / 2
+    const midY = bounds.y + height / 2
+
+    if (width === 0 || height === 0) {
+      return
+    }
+
+    const scale = 0.98 / Math.max(width / fullW, height / fullH)
+    const trans = [fullW / 2 - scale * midX, fullH / 2 - scale * midY]
+
     zoomArea.call(zoom.transform,
-      d3Zoom.zoomIdentity.translate(this.props.initialPosition.x, this.props.initialPosition.y))
+      d3Zoom.zoomIdentity
+        .translate(trans[0], trans[1])
+        .scale(scale))
   }
 }
 
@@ -87,18 +103,17 @@ ZoomableViewer.propTypes = {
 
   // Style of the area used by the D3.js renderer
   style: PropTypes.object,
-
   initialPosition: PropTypes.object
 }
 
 ZoomableViewer.defaultProps = {
   style: {
-    width: 1500,
-    height: 1000,
+    width: window.innerWidth,
+    height: window.innerHeight,
     background: '#FFFFFF'
   },
   initialPosition: {
-    x: 50,
+    x: 0,
     y: 0
   }
 }

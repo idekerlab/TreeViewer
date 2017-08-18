@@ -2,6 +2,7 @@ var path = require('path');
 
 module.exports = {
   entry: path.resolve(__dirname, "src/app.jsx"),
+  devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, "build"),
     filename: "app.js"

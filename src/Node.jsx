@@ -34,9 +34,8 @@ class Node extends Component {
     const style = Object.assign({}, this.props.shapeStyle)
 
     if(this.state.selected) {
-      style.fill = 'red'
-      style.stroke = "orange"
-      style.strokeWidth = "10"
+      style.stroke = "#7a7a7a"
+      style.strokeWidth = "6"
     } else {
       style.fill = this.props.shapeStyle.fill
     }

@@ -11,28 +11,20 @@ const TAG = 'viewer';
 
 
 const width = document.body.clientWidth
+const height = window.innerHeight
 
 const style = {
   width: width,
-  height: 500
-}
-const style2 = {
-  width: width,
-  height: 1900,
+  height: height,
   background: 'black'
 }
 
 ReactDOM.render(
   <div>
-    {/*<TreeViewer*/}
-      {/*data={data}*/}
-      {/*label="long_name"*/}
-      {/*style={style}*/}
-    {/*/>*/}
     <DAGViewer
       data={dag}
       label="name"
-      style={style2}
+      style={style}
     />
   </div>,
   document.getElementById(TAG)

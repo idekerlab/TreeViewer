@@ -126,8 +126,9 @@ class DAGViewer extends Component {
 
       const style = {
         fill: fillColor,
-        stroke: 'none',
-        shapeName: shapeName
+        shapeName: shapeName,
+        stroke: '#AAAAAA',
+        strokeWidth: 2
       }
 
       if (dType === 'gene') {
@@ -137,7 +138,7 @@ class DAGViewer extends Component {
         style.stroke = 'none'
         labelFontSize = 25
 
-      } else if (name === 'other paths') {
+      } else if (name.toLowerCase() === 'other paths') {
           shapeName = 'circle'
           style.fill = '#FFFFFF'
           style.stroke = '#AAAAAA'
@@ -152,7 +153,7 @@ class DAGViewer extends Component {
         style.stroke = '#AAAAAA'
         style.strokeWidth = 2
         labelFontSize = 15
-        name = 'Growth Rate = ' + phenotype
+        name = score.toPrecision(5)
       }
 
       nodes.push(
@@ -210,7 +211,7 @@ class DAGViewer extends Component {
       const target = g.node(e.v)
       const source = g.node(e.w)
 
-      if(target.label === 'other paths' || source.label === 'other paths') {
+      if(target.label.toLowerCase() === 'other paths' || source.label.toLowerCase() === 'other paths') {
         style.strokeDasharray = '5, 5'
         style.strokeWidth = 2
       }
