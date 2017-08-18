@@ -68,15 +68,15 @@ class Node extends Component {
   }
 
   getX = () => {
-    const disp = this.props.nodeSize + 10;
+    const disp = this.props.nodeSize + 8;
     if(this.props.isRoot) {
       return disp
     }
-    return this.props.isLeaf ? -disp : disp;
+    return this.props.isLeaf ? -disp : -(disp);
   }
 
   getY = () => {
-    return this.props.isLeaf ? this.props.nodeSize : (this.props.nodeSize / 2 + 10);
+    return this.props.isLeaf ? this.props.nodeSize/2 : (this.props.nodeSize + 15);
   }
 
 
@@ -90,7 +90,7 @@ class Node extends Component {
     const areaWidth = this.props.areaWidth
     const fontSize = this.props.labelFontSize
 
-    const maxCharLength = Math.floor((areaWidth - 10) / fontSize)
+    const maxCharLength = Math.floor((areaWidth - 10) / fontSize) + 7
 
     if(text.length < maxCharLength) {
       return (
@@ -197,7 +197,7 @@ Node.defaultProps = {
   position: {x: 0, y: 0},
   eventHandlers: DEF_EVENT_HANDLERS,
   showLabel: true,
-  labelFontSize: 11,
+  labelFontSize: 15,
   labelColor: '#333333'
 
 };

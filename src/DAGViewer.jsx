@@ -111,10 +111,10 @@ class DAGViewer extends Component {
       }
 
       let nodeSize = 25
-      let labelFontSize = 8
+      let labelFontSize = 13
 
       let fillColor = colorMapper(score)
-      let labelColor = '#333333'
+      let labelColor = '#3a3a3a'
 
       let shapeName = 'circle'
 
@@ -136,14 +136,14 @@ class DAGViewer extends Component {
         shapeName = 'circle'
         style.fill = '#1E196A'
         style.stroke = 'none'
-        labelFontSize = 25
+        labelFontSize = 28
 
       } else if (name.toLowerCase() === 'other paths') {
           shapeName = 'circle'
           style.fill = '#FFFFFF'
           style.stroke = '#AAAAAA'
-          labelFontSize = 18
-          style.strokeWidth = 2
+          labelFontSize = 17
+          style.strokeWidth = 1
           labelColor = '#777777'
 
       } else if (name === 'GO:00SUPER') {
@@ -151,7 +151,7 @@ class DAGViewer extends Component {
         nodeType = 'origin'
         shapeName = 'circle'
         style.stroke = '#AAAAAA'
-        style.strokeWidth = 2
+        style.strokeWidth = 1
         labelFontSize = 15
         name = score.toPrecision(5)
       }
