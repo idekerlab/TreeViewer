@@ -92,6 +92,7 @@ class DAGViewer extends Component {
   getNodes = g => {
     const vs = g.nodes()
     const nodes = []
+    const qType = this.props.queryType
 
     vs.forEach(v => {
 
@@ -153,7 +154,7 @@ class DAGViewer extends Component {
         style.stroke = '#AAAAAA'
         style.strokeWidth = 1
         labelFontSize = 15
-        name = score.toPrecision(5)
+        name = qType + ' = ' + score.toPrecision(5)
       }
 
       nodes.push(
