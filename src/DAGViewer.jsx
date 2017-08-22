@@ -8,8 +8,8 @@ import * as dagre from 'dagre'
 import * as d3Scale from 'd3-scale'
 
 const colorMapper = d3Scale.scaleLinear()
-  .domain([-1, 0, 1])
-  .range(['#3C54A5', '#FFFFFF', '#ED1F42'])
+  .domain([0, 1])
+  .range(['#FFFFFF', '#ED1F42'])
 
 
 import ZoomableViewer from './ZoomableViewer'
@@ -113,7 +113,7 @@ class DAGViewer extends Component {
       let nodeSize = 25
       let labelFontSize = 13
 
-      let fillColor = colorMapper(score)
+      let fillColor = colorMapper(Math.abs(score))
       let labelColor = '#3a3a3a'
 
       let shapeName = 'circle'
