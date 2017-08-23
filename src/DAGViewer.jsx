@@ -135,7 +135,7 @@ class DAGViewer extends Component {
       if (dType === 'gene') {
         isLeaf = true
         shapeName = 'circle'
-        style.fill = '#1E196A'
+        style.fill = 'red'
         style.stroke = 'none'
         labelFontSize = 28
 
@@ -154,7 +154,7 @@ class DAGViewer extends Component {
         style.stroke = '#AAAAAA'
         style.strokeWidth = 1
         labelFontSize = 15
-        name = qType + ' = ' + score.toPrecision(5)
+        name = 'Cell (' + qType + '): ' + score.toPrecision(5)
       }
 
       nodes.push(
