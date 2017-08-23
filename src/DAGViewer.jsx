@@ -76,7 +76,7 @@ class DAGViewer extends Component {
       const y = n.y
 
       g.node(v).x = x * 2.5
-      g.node(v).y = y
+      g.node(v).y = y * 1.3
     })
 
     const nodes = this.getNodes(g)
