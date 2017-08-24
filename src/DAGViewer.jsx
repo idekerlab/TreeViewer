@@ -75,8 +75,8 @@ class DAGViewer extends Component {
       const x = n.x
       const y = n.y
 
-      g.node(v).x = x * 2.5
-      g.node(v).y = y * 1.3
+      g.node(v).x = x * 3
+      g.node(v).y = y * 0.9
     })
 
     const nodes = this.getNodes(g)
@@ -112,7 +112,7 @@ class DAGViewer extends Component {
       }
 
       let nodeSize = 25
-      let labelFontSize = 13
+      let labelFontSize = 14
 
       let fillColor = colorMapper(Math.abs(score))
       let labelColor = '#3a3a3a'
@@ -203,8 +203,8 @@ class DAGViewer extends Component {
       let style = {
         fill: 'none',
         stroke: '#777777',
-        strokeOpacity: 0.9,
-        strokeWidth: 3,
+        strokeOpacity: 0.7,
+        strokeWidth: 2,
         markerMid: 'url(#markerArrow)',
 
       }

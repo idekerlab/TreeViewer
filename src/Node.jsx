@@ -90,7 +90,7 @@ class Node extends Component {
     const areaWidth = this.props.areaWidth
     const fontSize = this.props.labelFontSize
 
-    const maxCharLength = Math.floor((areaWidth - 10) / fontSize) + 7
+    const maxCharLength = Math.floor((areaWidth - 10) / fontSize)
 
     if(text.length < maxCharLength) {
       return (
@@ -107,44 +107,86 @@ class Node extends Component {
       )
     }
 
+    // Split the full name into words
     const words = text.split(/\s+/)
-    let line1 = ''
-    let line2 = ''
+    const lines = []
 
-    let i = 0
-    for(i; i<words.length; i++) {
-      if(line1.length < maxCharLength) {
-        line1 = line1 + words[i] + ' ';
-      } else {
-        line2 = line2 + words[i] + ' '
+    let lineCount = 0
+    let currentLine = ''
+
+    for(let i = 0; i<words.length; i++) {
+
+      currentLine = currentLine + words[i] + ' '
+
+      if(currentLine.length > maxCharLength) {
+
+        lines.push({
+          value: currentLine,
+          dy: this.getY() + this.props.labelFontSize * 1.2 * lineCount
+        })
+
+        currentLine = ''
+        lineCount++
       }
 
-      if(line2.length >= maxCharLength) {
-        if(words.length > i) {
-          line2 = line2 + '...'
-        }
-        break;
-      }
+      //
+      // if(line1.length < maxCharLength) {
+      //   line1 = line1 + words[i] + ' ';
+      // } else {
+      //   line2 = line2 + words[i] + ' '
+      // }
+      //
+      // if(line2.length >= maxCharLength) {
+      //   if(words.length > i) {
+      //     line2 = line2 + '...'
+      //   }
+      //   break;
+      // }
+    }
+    if(currentLine !== '') {
+      lines.push({
+        value: currentLine,
+        dy: this.getY() + this.props.labelFontSize * 1.2 * lineCount
+      })
+
     }
 
-    return [
-      <text
-        key={String(Math.random())}
-        dy={this.getY()}
-        x={this.getX()}
-        style={this.getStyle()}
-      >
-        {line1}
-      </text>,
-      <text
-        key={String(Math.random())}
-        dy={this.getY() + this.props.labelFontSize * 1.2}
-        x={this.getX()}
-        style={this.getStyle()}
-      >
-        {line2}
-      </text>
-    ]
+    console.log('%% Lines = ')
+    console.log(lines)
+
+    return(
+      lines.map(line => {
+        return (
+        <text
+          key={String(Math.random())}
+          dy={line.dy}
+          x={this.getX()}
+          style={this.getStyle()}
+        >
+          {line.value}
+        </text>
+        )
+      })
+    )
+
+    // return [
+    //   <text
+    //     key={String(Math.random())}
+    //     dy={this.getY()}
+    //     x={this.getX()}
+    //     style={this.getStyle()}
+    //   >
+    //     {line1}
+    //   </text>,
+    //   <text
+    //     key={String(Math.random())}
+    //     dy={this.getY() + this.props.labelFontSize * 1.2}
+    //     x={this.getX()}
+    //     style={this.getStyle()}
+    //   >
+    //     {line2}
+    //   </text>
+    // ]
 
 
   }
