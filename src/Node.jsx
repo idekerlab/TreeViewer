@@ -129,20 +129,8 @@ class Node extends Component {
         lineCount++
       }
 
-      //
-      // if(line1.length < maxCharLength) {
-      //   line1 = line1 + words[i] + ' ';
-      // } else {
-      //   line2 = line2 + words[i] + ' '
-      // }
-      //
-      // if(line2.length >= maxCharLength) {
-      //   if(words.length > i) {
-      //     line2 = line2 + '...'
-      //   }
-      //   break;
-      // }
     }
+
     if(currentLine !== '') {
       lines.push({
         value: currentLine,
@@ -150,9 +138,6 @@ class Node extends Component {
       })
 
     }
-
-    console.log('%% Lines = ')
-    console.log(lines)
 
     return(
       lines.map(line => {
@@ -168,27 +153,6 @@ class Node extends Component {
         )
       })
     )
-
-    // return [
-    //   <text
-    //     key={String(Math.random())}
-    //     dy={this.getY()}
-    //     x={this.getX()}
-    //     style={this.getStyle()}
-    //   >
-    //     {line1}
-    //   </text>,
-    //   <text
-    //     key={String(Math.random())}
-    //     dy={this.getY() + this.props.labelFontSize * 1.2}
-    //     x={this.getX()}
-    //     style={this.getStyle()}
-    //   >
-    //     {line2}
-    //   </text>
-    // ]
-
-
   }
 
   getStyle = () => {
