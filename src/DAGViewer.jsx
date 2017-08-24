@@ -112,7 +112,7 @@ class DAGViewer extends Component {
       }
 
       let nodeSize = 25
-      let labelFontSize = 14
+      let labelFontSize = 17
 
       let fillColor = colorMapper(Math.abs(score))
       let labelColor = '#3a3a3a'

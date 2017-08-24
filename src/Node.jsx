@@ -76,7 +76,7 @@ class Node extends Component {
   }
 
   getY = () => {
-    return this.props.isLeaf ? this.props.nodeSize/2 : (this.props.nodeSize + 15);
+    return this.props.isLeaf ? this.props.nodeSize/2 : (this.props.nodeSize + 17);
   }
 
 
