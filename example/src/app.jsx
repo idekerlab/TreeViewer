@@ -9,7 +9,6 @@ const dag = require('./dag3.json');
 // HTML section to be used for rendering component
 const TAG = 'viewer';
 
-
 const width = document.body.clientWidth
 const height = window.innerHeight
 

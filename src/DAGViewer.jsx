@@ -138,6 +138,7 @@ class DAGViewer extends Component {
         style.fill = 'red'
         style.stroke = 'none'
         labelFontSize = 28
+        name = 'Δ' + name
 
       } else if (name.toLowerCase() === 'other paths') {
           shapeName = 'circle'
