@@ -33,6 +33,9 @@ class DAGViewer extends Component {
 
   createDag = () => {
 
+    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    console.log(this.props)
+    
     const jsnodes = this.props.data.elements.nodes
     const jsedges = this.props.data.elements.edges
 
@@ -105,6 +108,7 @@ class DAGViewer extends Component {
 
       let score = node.score
       let phenotype = node.phenotype
+      // let phenotype = node.state
       let neurons = node.neurons
 
       if (score === undefined || score === NaN) {
@@ -138,7 +142,7 @@ class DAGViewer extends Component {
         style.fill = 'red'
         style.stroke = 'none'
         labelFontSize = 28
-        name = 'Δ' + name
+        name = name + 'Δ'
 
       } else if (name.toLowerCase() === 'other paths') {
           shapeName = 'circle'
