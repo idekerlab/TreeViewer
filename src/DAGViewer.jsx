@@ -2,7 +2,6 @@ import React, {Component, PropTypes} from 'react'
 
 import Link from './Link'
 import Node from './Node'
-import ArrowHead from './ArrowHead'
 
 import * as dagre from 'dagre'
 import * as d3Scale from 'd3-scale'
@@ -32,10 +31,6 @@ class DAGViewer extends Component {
 
 
   createDag = () => {
-
-    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-    console.log(this.props)
-    
     const jsnodes = this.props.data.elements.nodes
     const jsedges = this.props.data.elements.edges
 
@@ -142,7 +137,7 @@ class DAGViewer extends Component {
         style.fill = 'red'
         style.stroke = 'none'
         labelFontSize = 28
-        name = name + 'Δ'
+        name = name.toLowerCase() + 'Δ'
 
       } else if (name.toLowerCase() === 'other paths') {
           shapeName = 'circle'
@@ -159,7 +154,7 @@ class DAGViewer extends Component {
         style.stroke = '#AAAAAA'
         style.strokeWidth = 1
         labelFontSize = 15
-        name = 'Cell (' + qType + '): ' + score.toPrecision(5)
+        name = 'Cell'
       }
 
       nodes.push(
@@ -211,7 +206,6 @@ class DAGViewer extends Component {
         strokeOpacity: 0.7,
         strokeWidth: 2,
         markerMid: 'url(#markerArrow)',
-
       }
 
       const target = g.node(e.v)
@@ -257,19 +251,12 @@ class DAGViewer extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.data !== this.props.data) {
-      console.log("Updating tree--------------")
       this.createDag()
     }
   }
 
 
   render() {
-
-    console.log("{{{{{{{{{{{{{{{{{{{{ Rendering DAG Wrapper3 }}}}}}}}}}}}}}}}}}}}}}}}}}}}}")
-    console.log(this.props)
-    console.log(this.state)
-
-
     return (
       <ZoomableViewer
         style={this.props.style}

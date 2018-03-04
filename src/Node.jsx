@@ -70,7 +70,7 @@ class Node extends Component {
   getX = () => {
     const disp = this.props.nodeSize + 8;
     if(this.props.isRoot) {
-      return disp
+      return 0
     }
     return this.props.isLeaf ? -disp : -(disp);
   }
@@ -156,12 +156,14 @@ class Node extends Component {
   }
 
   getStyle = () => {
+
     return {
       textAnchor: this.getAnchor(),
       fill: this.props.labelColor,
       fontFamily: "SansSerif",
       fontSize: this.props.labelFontSize,
-      fontWeight: 700
+      fontWeight: 700,
+      fontStyle: 'italic'
     }
   }
 
