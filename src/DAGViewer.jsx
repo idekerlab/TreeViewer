@@ -152,9 +152,9 @@ class DAGViewer extends Component {
         nodeType = 'origin'
         shapeName = 'circle'
         style.stroke = '#AAAAAA'
-        style.strokeWidth = 1
-        labelFontSize = 15
-        name = 'Cell'
+        style.strokeWidth = 2
+        labelFontSize = 18
+        name = 'Cell Growth'
       }
 
       nodes.push(
