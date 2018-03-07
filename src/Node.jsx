@@ -1,6 +1,40 @@
 import React, {Component, PropTypes} from 'react'
 import Shape from './Shape'
 
+import * as d3Annotation from 'd3-svg-annotation'
+
+const type = d3Annotation.annotationCallout
+
+const annotations = [
+  {
+    note: {
+      label: "Basic settings with subject position(x,y) and a note offset(dx, dy)",
+      title: "d3.annotationLabel"
+    },
+    x: 50,
+    y: 150,
+    dy: 137,
+    dx: 162
+}]
+
+
+// const makeAnnotations = d3Annotation.annotation()
+//   .editMode(true)
+//   //also can set and override in the note.wrap property
+//   //of the annotation object
+//   .textWrap(167)
+//   //also can set and override in the note.padding property
+//   //of the annotation object
+//   .notePadding(-24)
+//   .type(type)
+//   //accessors & accessorsInverse not needed
+//   //if using x, y in annotations JSON
+//   .annotations(annotations)
+
+const makeAnnotations = d3Annotation.annotation()
+  .type(d3Annotation.annotationLabel)
+  .annotations(annotations)
+
 
 const DEF_EVENT_HANDLERS = {
   nodeSelected: selectedNode => {
@@ -27,6 +61,15 @@ class Node extends Component {
     this.props.eventHandlers.nodeSelected(this.props.id)
   }
 
+  onMouseEnter = (event) => {
+    annotations.x = this.props.position.x
+    annotations.y = this.props.position.y
+
+    console.log("Enter5!!!!!!!!! --------------")
+    console.log(annotations)
+    console.log(this.props.position)
+  }
+
 
   render() {
 
@@ -47,6 +90,7 @@ class Node extends Component {
         className={this.props.nodeType}
         transform={this.getTransform(this.props.position)}
         onClick={this.onClick}
+        onMouseEnter={this.onMouseEnter}
       >
         <Shape
           size={this.props.nodeSize}
