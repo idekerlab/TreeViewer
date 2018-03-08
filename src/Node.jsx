@@ -1,87 +1,104 @@
-import React, {Component, PropTypes} from 'react'
+import React, { Component, PropTypes } from 'react'
 import Shape from './Shape'
 
 import * as d3Annotation from 'd3-svg-annotation'
+import * as d3Selection from 'd3-selection'
 
 const type = d3Annotation.annotationCallout
 
-const annotations = [
-  {
-    note: {
-      label: "Basic settings with subject position(x,y) and a note offset(dx, dy)",
-      title: "d3.annotationLabel"
-    },
-    x: 50,
-    y: 150,
-    dy: 137,
-    dx: 162
-}]
-
-
-// const makeAnnotations = d3Annotation.annotation()
-//   .editMode(true)
-//   //also can set and override in the note.wrap property
-//   //of the annotation object
-//   .textWrap(167)
-//   //also can set and override in the note.padding property
-//   //of the annotation object
-//   .notePadding(-24)
-//   .type(type)
-//   //accessors & accessorsInverse not needed
-//   //if using x, y in annotations JSON
-//   .annotations(annotations)
-
-const makeAnnotations = d3Annotation.annotation()
-  .type(d3Annotation.annotationLabel)
-  .annotations(annotations)
-
-
 const DEF_EVENT_HANDLERS = {
   nodeSelected: selectedNode => {
-    console.log("Node Selected:")
+    console.log('Node Selected:')
     console.log(selectedNode)
   }
 }
 
-
 class Node extends Component {
-
   constructor(props) {
-    super(props);
+    super(props)
+
+    const annotations = [
+      {
+        note: {
+          label:
+            'Basic settings with subject position(x,y) and a note offset(dx, dy)',
+          title: 'd3.annotationLabel'
+        },
+        x: props.position.x,
+        y: props.position.y,
+        dy: 137,
+        dx: 162
+      }
+    ]
 
     this.state = {
       showTooltip: false,
-      selected: false
+      selected: false,
+      annotations
     }
   }
 
-  onClick = (event) => {
-    console.log("----------- CLICK!!!!!!!!! --------------")
-    this.setState({selected: !this.state.selected})
+  onClick = event => {
+    console.log('----------- CLICK!!!!!!!!! --------------')
+    this.setState({ selected: !this.state.selected })
     this.props.eventHandlers.nodeSelected(this.props.id)
   }
 
-  onMouseEnter = (event) => {
-    annotations.x = this.props.position.x
-    annotations.y = this.props.position.y
-
-    console.log("Enter5!!!!!!!!! --------------")
-    console.log(annotations)
-    console.log(this.props.position)
+  onMouseEnter = event => {
+    this.setState({showTooltip: true})
   }
 
+  onMouseLeave = event => {
+    this.setState({showTooltip: false})
+  }
+
+  getAnnotation = props => {
+
+    if(!this.state.showTooltip) {
+      return <text />
+    }
+
+    const annotationStyle = {
+      textAnchor: 'start',
+      fill: '#FF0000',
+      fontFamily: 'SansSerif',
+      fontSize: 30,
+      fontWeight: 500,
+      fontStyle: 'italic'
+    }
+
+    const text = props.data['name']
+
+    return (
+      <text
+        key={String(Math.random())}
+        dy={this.getY() + 80}
+        x={this.getX()+ 30}
+        style={annotationStyle}
+      >
+        {text}
+      </text>
+    )
+  }
 
   render() {
-
     const textElement = this.getTextElement(this.props.data)
+
+    const annotation = this.getAnnotation(this.props)
+
     const style = Object.assign({}, this.props.shapeStyle)
 
-    if(this.state.selected) {
-      style.stroke = "#7a7a7a"
-      style.strokeWidth = "6"
+    if (this.state.selected) {
+      // style.stroke = '#7a7a7a'
+      // style.strokeWidth = '6'
     } else {
-      style.fill = this.props.shapeStyle.fill
+      if(this.state.showTooltip) {
+        style.fill = 'yellow'
+      } else {
+        style.fill = this.props.shapeStyle.fill
+      }
     }
+
 
     let shapeName = this.props.shapeName
 
@@ -91,6 +108,7 @@ class Node extends Component {
         transform={this.getTransform(this.props.position)}
         onClick={this.onClick}
         onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
       >
         <Shape
           size={this.props.nodeSize}
@@ -102,27 +120,28 @@ class Node extends Component {
 
         {textElement}
 
+        {annotation}
       </g>
     )
   }
 
-
   getTransform = position => {
-    return "translate(" + position.y + "," + position.x + ")";
+    return 'translate(' + position.y + ',' + position.x + ')'
   }
 
   getX = () => {
-    const disp = this.props.nodeSize + 8;
-    if(this.props.isRoot) {
+    const disp = this.props.nodeSize + 8
+    if (this.props.isRoot) {
       return 0
     }
-    return this.props.isLeaf ? -disp : -(disp);
+    return this.props.isLeaf ? -disp : -disp
   }
 
   getY = () => {
-    return this.props.isLeaf ? this.props.nodeSize/2 : (this.props.nodeSize + 17);
+    return this.props.isLeaf
+      ? this.props.nodeSize / 2
+      : this.props.nodeSize + 17
   }
-
 
   getTextElement = data => {
     const key = this.props.labelKey
@@ -136,19 +155,17 @@ class Node extends Component {
 
     const maxCharLength = Math.floor((areaWidth - 10) / fontSize)
 
-    if(text.length < maxCharLength) {
-      return (
-        [
-          <text
-            key={String(Math.random())}
-            dy={this.getY()}
-            x={this.getX()}
-            style={this.getStyle()}
-          >
-            {text}
-          </text>
-        ]
-      )
+    if (text.length < maxCharLength) {
+      return [
+        <text
+          key={String(Math.random())}
+          dy={this.getY()}
+          x={this.getX()}
+          style={this.getStyle()}
+        >
+          {text}
+        </text>
+      ]
     }
 
     // Split the full name into words
@@ -158,12 +175,10 @@ class Node extends Component {
     let lineCount = 0
     let currentLine = ''
 
-    for(let i = 0; i<words.length; i++) {
-
+    for (let i = 0; i < words.length; i++) {
       currentLine = currentLine + words[i] + ' '
 
-      if(currentLine.length > maxCharLength) {
-
+      if (currentLine.length > maxCharLength) {
         lines.push({
           value: currentLine,
           dy: this.getY() + this.props.labelFontSize * 1.2 * lineCount
@@ -172,20 +187,17 @@ class Node extends Component {
         currentLine = ''
         lineCount++
       }
-
     }
 
-    if(currentLine !== '') {
+    if (currentLine !== '') {
       lines.push({
         value: currentLine,
         dy: this.getY() + this.props.labelFontSize * 1.2 * lineCount
       })
-
     }
 
-    return(
-      lines.map(line => {
-        return (
+    return lines.map(line => {
+      return (
         <text
           key={String(Math.random())}
           dy={line.dy}
@@ -194,17 +206,15 @@ class Node extends Component {
         >
           {line.value}
         </text>
-        )
-      })
-    )
+      )
+    })
   }
 
   getStyle = () => {
-
     return {
       textAnchor: this.getAnchor(),
       fill: this.props.labelColor,
-      fontFamily: "SansSerif",
+      fontFamily: 'SansSerif',
       fontSize: this.props.labelFontSize,
       fontWeight: 700,
       fontStyle: 'italic'
@@ -213,15 +223,13 @@ class Node extends Component {
 
   getAnchor = () => {
     // Special case: Root
-    if(this.props.isRoot) {
+    if (this.props.isRoot) {
       return 'middle'
     }
 
     return this.props.isLeaf ? 'end' : 'start'
   }
-
 }
-
 
 Node.propTypes = {
   id: PropTypes.string.isRequired,
@@ -238,7 +246,7 @@ Node.propTypes = {
   areaHeight: PropTypes.number,
   labelFontSize: PropTypes.number,
   labelColor: PropTypes.string
-};
+}
 
 Node.defaultProps = {
   nodeType: 'node',
@@ -246,12 +254,11 @@ Node.defaultProps = {
   isRoot: false,
   labelKey: 'name',
   nodeSize: 25,
-  position: {x: 0, y: 0},
+  position: { x: 0, y: 0 },
   eventHandlers: DEF_EVENT_HANDLERS,
   showLabel: true,
   labelFontSize: 15,
   labelColor: '#333333'
-
-};
+}
 
 export default Node
