@@ -1,10 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Shape from './Shape'
-
-import * as d3Annotation from 'd3-svg-annotation'
-import * as d3Selection from 'd3-selection'
-
-const type = d3Annotation.annotationCallout
+import RoundRect from './RoundRect'
 
 const DEF_EVENT_HANDLERS = {
   nodeSelected: selectedNode => {
@@ -45,35 +41,51 @@ class Node extends Component {
   }
 
   onMouseEnter = event => {
-    this.setState({showTooltip: true})
+    console.log(this.props)
+    this.setState({ showTooltip: true })
   }
 
   onMouseLeave = event => {
-    this.setState({showTooltip: false})
+    this.setState({ showTooltip: false })
   }
 
   getAnnotation = props => {
 
-    if(!this.state.showTooltip) {
+    if (!this.state.showTooltip) {
       return <text />
     }
 
-    const annotationStyle = {
-      textAnchor: 'start',
-      fill: '#FF0000',
-      fontFamily: 'SansSerif',
-      fontSize: 30,
-      fontWeight: 500,
-      fontStyle: 'italic'
+    const container = []
+
+    container.push(<RoundRect
+      x={this.getX() + 30}
+      y={this.getY() + 30}
+    />)
+
+    return container
+  }
+
+  getAnnotationText = props => {
+
+    if (!this.state.showTooltip) {
+      return <text />
     }
 
-    const text = props.data['name']
+    const text = props.id + " = " + props.data['score']
+
+    const annotationStyle = {
+      textAnchor: 'start',
+      fill: '#444444',
+      fontFamily: 'SansSerif',
+      fontSize: 14,
+      fontWeight: 500,
+    }
 
     return (
       <text
         key={String(Math.random())}
-        dy={this.getY() + 80}
-        x={this.getX()+ 30}
+        x={this.getX() + 35}
+        dy={this.getY() + 53}
         style={annotationStyle}
       >
         {text}
@@ -85,6 +97,7 @@ class Node extends Component {
     const textElement = this.getTextElement(this.props.data)
 
     const annotation = this.getAnnotation(this.props)
+    const annotationText = this.getAnnotationText(this.props)
 
     const style = Object.assign({}, this.props.shapeStyle)
 
@@ -92,13 +105,12 @@ class Node extends Component {
       // style.stroke = '#7a7a7a'
       // style.strokeWidth = '6'
     } else {
-      if(this.state.showTooltip) {
+      if (this.state.showTooltip) {
         style.fill = 'yellow'
       } else {
         style.fill = this.props.shapeStyle.fill
       }
     }
-
 
     let shapeName = this.props.shapeName
 
@@ -121,6 +133,7 @@ class Node extends Component {
         {textElement}
 
         {annotation}
+        {annotationText}
       </g>
     )
   }

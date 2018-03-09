@@ -73,8 +73,14 @@ class DAGViewer extends Component {
       const x = n.x
       const y = n.y
 
+      const type = n.type
+      if(type === 'gene') {
+        g.node(v).y = 0
+      } else {
+        g.node(v).y = y * 1.2
+      }
+
       g.node(v).x = x * 3
-      g.node(v).y = y * 1.2
     })
 
     const nodes = this.getNodes(g)
@@ -164,7 +170,8 @@ class DAGViewer extends Component {
           id={node.id}
           data={{
             name: name,
-            neurons: neurons
+            neurons: neurons,
+            score: score
           }}
           position={{x: node.x, y: node.y}}
           isLeaf={isLeaf}
