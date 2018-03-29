@@ -2,6 +2,9 @@ import React, { Component, PropTypes } from 'react'
 import Shape from './Shape'
 import RoundRect from './RoundRect'
 
+
+const TOOLTIP_PREFIX = 'Absolute change in state from wildtype = '
+
 const DEF_EVENT_HANDLERS = {
   nodeSelected: selectedNode => {
     console.log('Node Selected:')
@@ -35,9 +38,12 @@ class Node extends Component {
   }
 
   onClick = event => {
-    console.log('----------- CLICK!!!!!!!!! --------------')
     this.setState({ selected: !this.state.selected })
+
+    // Open description page in Amigo
+    window.open('http://amigo.geneontology.org/amigo/term/' + this.props.id, '_blank');
     this.props.eventHandlers.nodeSelected(this.props.id)
+
   }
 
   onMouseEnter = event => {
@@ -71,7 +77,8 @@ class Node extends Component {
       return <text />
     }
 
-    const text = props.id + " = " + props.data['score']
+
+    const text = TOOLTIP_PREFIX + props.data['score'].toFixed(3)
 
     const annotationStyle = {
       textAnchor: 'start',
